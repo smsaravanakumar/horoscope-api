@@ -78,8 +78,6 @@ function getGMST(date) {
   return normalizeDegree(gmst);
 }
 
-/*
-
 function getAscendantTropicalLongitude(date, latitude, longitude) {
   const gmst = getGMST(date);
   const lst = normalizeDegree(gmst + longitude);
@@ -92,35 +90,12 @@ function getAscendantTropicalLongitude(date, latitude, longitude) {
 
   const numerator = -Math.cos(theta);
   const denominator =
-    Math.sin(theta) * Math.cos(eps) +
-    Math.tan(phi) * Math.sin(eps);
-
-  return normalizeDegree(radToDeg(Math.atan2(numerator, denominator)));
-}
-*/
-
-function getAscendantTropicalLongitude(date, latitude, longitude) {
-  const gmst = getGMST(date);
-
-  // East longitude is positive. India longitude is +77.
-  const lst = normalizeDegree(gmst + longitude);
-
-  const epsilon = 23.4392911;
-
-  const theta = degToRad(lst);
-  const phi = degToRad(latitude);
-  const eps = degToRad(epsilon);
-
-  const numerator = Math.cos(theta);
-  const denominator =
-    -Math.sin(theta) * Math.cos(eps) -
-    Math.tan(phi) * Math.sin(eps);
+    Math.sin(theta) * Math.cos(eps) + Math.tan(phi) * Math.sin(eps);
 
   const asc = radToDeg(Math.atan2(numerator, denominator));
 
   return normalizeDegree(asc);
 }
-
 
 function getLagna(date, latitude, longitude) {
   const ayanamsa = getLahiriAyanamsa(date);
@@ -140,6 +115,56 @@ function getLagna(date, latitude, longitude) {
     tropicalLongitude,
     siderealLongitude,
     speed: 0,
+  };
+}
+
+// Traditional dynamic parts for day/night Maandhi calculation
+const DAY_MANDI_PARTS = [5.5, 4.5, 3.5, 2.5, 1.5, 0.5, 6.5];
+const NIGHT_MANDI_PARTS = [1.5, 0.5, 6.5, 5.5, 4.5, 3.5, 2.5];
+
+function getMandiPosition(date, latitude, longitude, ayanamsa) {
+  const observer = new Astronomy.Observer(latitude, longitude, 0);
+
+  const sunriseTime = Astronomy.SearchRiseSet(Astronomy.Body.Sun, observer, Astronomy.Direction.Rise, date, -1);
+  const sunsetTime = Astronomy.SearchRiseSet(Astronomy.Body.Sun, observer, Astronomy.Direction.Set, date, -1);
+
+  if (!sunriseTime || !sunsetTime) return null;
+
+  const sunriseMs = sunriseTime.date.getTime();
+  const sunsetMs = sunsetTime.date.getTime();
+  const birthMs = date.getTime();
+
+  let targetRiseTimeMs = 0;
+  const weekday = date.getDay(); 
+
+  // Dynamically checking true day length or night length instead of multiplying by a flat 12
+  if (birthMs >= sunriseMs && birthMs < sunsetMs) {
+    const dayDurationMs = sunsetMs - sunriseMs;
+    const part = DAY_MANDI_PARTS[weekday];
+    targetRiseTimeMs = sunriseMs + (part / 8) * dayDurationMs;
+  } else {
+    const nextSunriseTime = Astronomy.SearchRiseSet(Astronomy.Body.Sun, observer, Astronomy.Direction.Rise, date, 1);
+    if (!nextSunriseTime) return null;
+
+    const nextSunriseMs = nextSunriseTime.date.getTime();
+    const effectiveSunsetMs = birthMs >= sunsetMs ? sunsetMs : (sunsetMs - 24 * 60 * 60 * 1000);
+    const nightDurationMs = nextSunriseMs - effectiveSunsetMs;
+    
+    const part = NIGHT_MANDI_PARTS[weekday];
+    targetRiseTimeMs = effectiveSunsetMs + (part / 8) * nightDurationMs;
+  }
+
+  const mandiRiseDate = new Date(targetRiseTimeMs);
+  const tropicalMandi = getAscendantTropicalLongitude(mandiRiseDate, latitude, longitude);
+  const siderealMandi = normalizeDegree(tropicalMandi - ayanamsa);
+
+  return {
+    key: "mandi",
+    ta: "மாந்தி",
+    en: "Mandi",
+    tropicalLongitude: tropicalMandi,
+    siderealLongitude: siderealMandi,
+    speed: 0
   };
 }
 
@@ -209,5 +234,6 @@ function getPlanetPositions(date, latitude = 0, longitude = 0) {
 module.exports = {
   getPlanetPositions,
   getLagna,
+  getMandiPosition,
   normalizeDegree,
 };
