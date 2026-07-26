@@ -92,7 +92,10 @@ function getAscendantTropicalLongitude(date, latitude, longitude) {
   const denominator =
     Math.sin(theta) * Math.cos(eps) + Math.tan(phi) * Math.sin(eps);
 
-  const asc = radToDeg(Math.atan2(numerator, denominator));
+  // atan2 returns the opposite intersection of the ecliptic and horizon
+  // for this formula. Adding 180° selects the eastern intersection,
+  // which is the actual ascendant (Lagna).
+  const asc = radToDeg(Math.atan2(numerator, denominator)) + 180;
 
   return normalizeDegree(asc);
 }
@@ -118,44 +121,112 @@ function getLagna(date, latitude, longitude) {
   };
 }
 
-// Traditional dynamic parts for day/night Maandhi calculation
-const DAY_MANDI_PARTS = [5.5, 4.5, 3.5, 2.5, 1.5, 0.5, 6.5];
-const NIGHT_MANDI_PARTS = [1.5, 0.5, 6.5, 5.5, 4.5, 3.5, 2.5];
+// Traditional Maandhi calculation used by the supplied reference charts.
+//
+// The daylight or night-time duration is divided into eight equal portions.
+// The arrays below identify the END of Saturn's portion for each weekday
+// (Sunday = index 0 ... Saturday = index 6).
+//
+// Earlier code used the midpoint of Saturn's portion (6.5, 5.5, ...),
+// which produced Leo 16°24′ for the 04-04-1971 Tirunelveli sample.
+// The supplied reference uses the end-point method and expects about
+// Leo 26°13′ for Maandhi.
+const DAY_MANDI_END_PARTS = [7, 6, 5, 4, 3, 2, 1];
+const NIGHT_MANDI_END_PARTS = [3, 2, 1, 7, 6, 5, 4];
+
+function searchRiseSetEvents(body, observer, direction, startDate, count = 3) {
+  const events = [];
+  let cursor = new Date(startDate.getTime());
+
+  for (let index = 0; index < count; index += 1) {
+    const event = Astronomy.SearchRiseSet(
+      body,
+      observer,
+      direction,
+      cursor,
+      3
+    );
+
+    if (!event || !event.date) break;
+
+    events.push(event.date);
+    cursor = new Date(event.date.getTime() + 60 * 1000);
+  }
+
+  return events;
+}
+
+function getIndiaWeekday(date) {
+  const istOffsetMs = 5.5 * 60 * 60 * 1000;
+  return new Date(date.getTime() + istOffsetMs).getUTCDay();
+}
 
 function getMandiPosition(date, latitude, longitude, ayanamsa) {
   const observer = new Astronomy.Observer(latitude, longitude, 0);
+  const searchStart = new Date(date.getTime() - 36 * 60 * 60 * 1000);
 
-  const sunriseTime = Astronomy.SearchRiseSet(Astronomy.Body.Sun, observer, Astronomy.Direction.Rise, date, -1);
-  const sunsetTime = Astronomy.SearchRiseSet(Astronomy.Body.Sun, observer, Astronomy.Direction.Set, date, -1);
+  // astronomy-engine uses +1 for rise and -1 for set.
+  // Astronomy.Direction does not exist in the installed JavaScript package.
+  const sunrises = searchRiseSetEvents(
+    Astronomy.Body.Sun,
+    observer,
+    +1,
+    searchStart,
+    4
+  );
 
-  if (!sunriseTime || !sunsetTime) return null;
+  const sunsets = searchRiseSetEvents(
+    Astronomy.Body.Sun,
+    observer,
+    -1,
+    searchStart,
+    4
+  );
 
-  const sunriseMs = sunriseTime.date.getTime();
-  const sunsetMs = sunsetTime.date.getTime();
+  if (sunrises.length === 0 || sunsets.length === 0) return null;
+
   const birthMs = date.getTime();
+  const previousSunrise = [...sunrises]
+    .reverse()
+    .find((item) => item.getTime() <= birthMs);
+  const nextSunrise = sunrises.find((item) => item.getTime() > birthMs);
+  const previousSunset = [...sunsets]
+    .reverse()
+    .find((item) => item.getTime() <= birthMs);
+  const nextSunset = sunsets.find((item) => item.getTime() > birthMs);
 
-  let targetRiseTimeMs = 0;
-  const weekday = date.getDay(); 
+  let targetRiseTimeMs;
+  const weekday = getIndiaWeekday(date);
 
-  // Dynamically checking true day length or night length instead of multiplying by a flat 12
-  if (birthMs >= sunriseMs && birthMs < sunsetMs) {
+  const isDayBirth =
+    previousSunrise &&
+    nextSunset &&
+    previousSunrise.getTime() <= birthMs &&
+    birthMs < nextSunset.getTime() &&
+    (!previousSunset || previousSunrise.getTime() > previousSunset.getTime());
+
+  if (isDayBirth) {
+    const sunriseMs = previousSunrise.getTime();
+    const sunsetMs = nextSunset.getTime();
     const dayDurationMs = sunsetMs - sunriseMs;
-    const part = DAY_MANDI_PARTS[weekday];
+    const part = DAY_MANDI_END_PARTS[weekday];
     targetRiseTimeMs = sunriseMs + (part / 8) * dayDurationMs;
   } else {
-    const nextSunriseTime = Astronomy.SearchRiseSet(Astronomy.Body.Sun, observer, Astronomy.Direction.Rise, date, 1);
-    if (!nextSunriseTime) return null;
+    if (!previousSunset || !nextSunrise) return null;
 
-    const nextSunriseMs = nextSunriseTime.date.getTime();
-    const effectiveSunsetMs = birthMs >= sunsetMs ? sunsetMs : (sunsetMs - 24 * 60 * 60 * 1000);
-    const nightDurationMs = nextSunriseMs - effectiveSunsetMs;
-    
-    const part = NIGHT_MANDI_PARTS[weekday];
-    targetRiseTimeMs = effectiveSunsetMs + (part / 8) * nightDurationMs;
+    const sunsetMs = previousSunset.getTime();
+    const sunriseMs = nextSunrise.getTime();
+    const nightDurationMs = sunriseMs - sunsetMs;
+    const part = NIGHT_MANDI_END_PARTS[weekday];
+    targetRiseTimeMs = sunsetMs + (part / 8) * nightDurationMs;
   }
 
   const mandiRiseDate = new Date(targetRiseTimeMs);
-  const tropicalMandi = getAscendantTropicalLongitude(mandiRiseDate, latitude, longitude);
+  const tropicalMandi = getAscendantTropicalLongitude(
+    mandiRiseDate,
+    latitude,
+    longitude
+  );
   const siderealMandi = normalizeDegree(tropicalMandi - ayanamsa);
 
   return {
@@ -164,7 +235,7 @@ function getMandiPosition(date, latitude, longitude, ayanamsa) {
     en: "Mandi",
     tropicalLongitude: tropicalMandi,
     siderealLongitude: siderealMandi,
-    speed: 0
+    speed: 0,
   };
 }
 

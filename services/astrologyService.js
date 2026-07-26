@@ -214,6 +214,44 @@ function getRasiNumber(degree) {
   return Math.floor(degree / 30) + 1;
 }
 
+/**
+ * Converts an absolute sidereal longitude into the degree-minute format
+ * used in the supplied horoscope samples.
+ *
+ * Example:
+ *   350.220751° absolute longitude
+ *   = Pisces 20°13′
+ *   = API display value "20.13°"
+ */
+function formatDegreeMinute(longitude) {
+  const normalized = normalizeDegree(longitude);
+  const degreeInRasiRaw = normalized % 30;
+
+  let degree = Math.floor(degreeInRasiRaw);
+  let minute = Math.round((degreeInRasiRaw - degree) * 60);
+
+  // Handle values such as 29°59.7′ rounding to 30°00′.
+  if (minute === 60) {
+    degree += 1;
+    minute = 0;
+  }
+
+  // Keep the display within a sign even at the rounding boundary.
+  if (degree === 30) {
+    degree = 0;
+  }
+
+  const minuteText = String(minute).padStart(2, "0");
+
+  return {
+    degreeInRasi: degreeInRasiRaw,
+    degree,
+    minute,
+    degreeMinute: `${degree}.${minuteText}°`,
+    degreeMinuteText: `${degree}°${minuteText}′`,
+  };
+}
+
 function getPlanetStrength(key, rasiNo, language = "ta") {
   if (key === "rahu" || key === "ketu") {
     return STRENGTH_LABELS[language].node;
@@ -259,11 +297,17 @@ function enrichPlanets(planets, language = "ta") {
 
   return planets.map((planet) => {
     const rasiNo = getRasiNumber(planet.siderealLongitude);
+    const degreeDisplay = formatDegreeMinute(planet.siderealLongitude);
 
     return {
       key: planet.key,
       name: language === "ta" ? planet.ta : planet.en,
       longitude: planet.siderealLongitude,
+      degreeInRasi: degreeDisplay.degreeInRasi,
+      degree: degreeDisplay.degree,
+      minute: degreeDisplay.minute,
+      degreeMinute: degreeDisplay.degreeMinute,
+      degreeMinuteText: degreeDisplay.degreeMinuteText,
       rasi: degreeToRasi(planet.siderealLongitude, language),
       rasiNo,
       nakshatra: degreeToNakshatra(planet.siderealLongitude, language),
@@ -471,4 +515,5 @@ module.exports = {
   buildNavamsaChart,
   buildAspectEngine,
   buildHouseLords,
+  formatDegreeMinute,
 };
