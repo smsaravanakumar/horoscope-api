@@ -203,54 +203,102 @@ function findCurrentSolarIngress(birthDate, currentSolarSignIndex) {
   };
 }
 
-function getTamilSolarDate(date, sunLongitude, language = "ta") {
-  const normalizedSunLongitude = normalizeDegree(sunLongitude);
-  const solarSignIndex = Math.floor(normalizedSunLongitude / 30);
-  const ingress = findCurrentSolarIngress(date, solarSignIndex);
-
-  const birthIst = getIstParts(date);
+function getEffectiveTamilMonthStart(ingress) {
   const ingressIst = getIstParts(ingress.date);
 
-  // Tamil solar dates follow the sunrise-day convention. When the sidereal
-  // solar ingress occurs after the day's sunrise, Tamil day 1 begins on the
-  // following local civil date. The service uses 06:00 IST as the conventional
-  // sunrise boundary because this isolated service currently receives no
-  // latitude/longitude. A later coordinate-aware refinement can replace this
-  // boundary without changing the API response structure.
-  const birthSerial = dateOnlySerial(birthIst);
+  // Tamil solar dates are assigned by the sunrise-day convention. Until the
+  // next sunrise, an ingress that happened after sunrise still belongs to the
+  // previous Tamil solar month for calendar-date purposes.
   const ingressOccurredAfterSunrise =
     ingressIst.hour > 6 ||
-    (ingressIst.hour === 6 && (ingressIst.minute > 0 || ingressIst.second > 0));
+    (ingressIst.hour === 6 &&
+      (ingressIst.minute > 0 || ingressIst.second > 0));
+
   const effectiveMonthStartSerial =
-    dateOnlySerial(ingressIst) + (ingressOccurredAfterSunrise ? ONE_DAY_MS : 0);
-  const tamilDay = Math.floor((birthSerial - effectiveMonthStartSerial) / ONE_DAY_MS) + 1;
-
-  if (tamilDay < 1 || tamilDay > 33) {
-    throw new Error("Calculated Tamil solar date is outside the expected range.");
-  }
-
-  const ingressIso = ingress.date.toISOString();
-  const ingressLocalText = `${String(ingressIst.day).padStart(2, "0")}-${String(ingressIst.month).padStart(2, "0")}-${ingressIst.year} ${String(ingressIst.hour).padStart(2, "0")}:${String(ingressIst.minute).padStart(2, "0")}:${String(ingressIst.second).padStart(2, "0")}`;
+    dateOnlySerial(ingressIst) +
+    (ingressOccurredAfterSunrise ? ONE_DAY_MS : 0);
 
   return {
-    month: TAMIL_MONTHS[language][solarSignIndex],
-    monthIndex: solarSignIndex + 1,
+    ingressIst,
+    ingressOccurredAfterSunrise,
+    effectiveMonthStartSerial,
+  };
+}
+
+function formatIstDate(parts) {
+  return `${String(parts.day).padStart(2, "0")}-${String(parts.month).padStart(2, "0")}-${parts.year}`;
+}
+
+function formatIstDateTime(parts) {
+  return `${formatIstDate(parts)} ${String(parts.hour).padStart(2, "0")}:${String(parts.minute).padStart(2, "0")}:${String(parts.second).padStart(2, "0")}`;
+}
+
+function getTamilSolarDate(date, sunLongitude, language = "ta") {
+  const normalizedSunLongitude = normalizeDegree(sunLongitude);
+  const observedSolarSignIndex = Math.floor(normalizedSunLongitude / 30);
+  const birthIst = getIstParts(date);
+  const birthSerial = dateOnlySerial(birthIst);
+
+  let calendarSolarSignIndex = observedSolarSignIndex;
+  let ingress = findCurrentSolarIngress(date, observedSolarSignIndex);
+  let monthStart = getEffectiveTamilMonthStart(ingress);
+  let usedPreviousMonthAfterLateIngress = false;
+
+  // Important PM/late-ingress correction:
+  // If the Sun entered a new sidereal sign after sunrise on the birth date,
+  // the Tamil calendar does not start the new month until the next sunrise.
+  // A birth later that same evening therefore still belongs to the previous
+  // Tamil month. The old code selected the new solar sign immediately and
+  // produced day 0, causing:
+  //   "Calculated Tamil solar date is outside the expected range."
+  if (birthSerial < monthStart.effectiveMonthStartSerial) {
+    usedPreviousMonthAfterLateIngress = true;
+    calendarSolarSignIndex = (observedSolarSignIndex + 11) % 12;
+
+    // Move just before the current ingress and locate the previous sign's
+    // ingress. One minute is used instead of one millisecond to avoid any
+    // floating-point boundary ambiguity in the astronomy calculation.
+    const beforeCurrentIngress = new Date(ingress.date.getTime() - 60 * 1000);
+    ingress = findCurrentSolarIngress(
+      beforeCurrentIngress,
+      calendarSolarSignIndex
+    );
+    monthStart = getEffectiveTamilMonthStart(ingress);
+  }
+
+  const tamilDay =
+    Math.floor(
+      (birthSerial - monthStart.effectiveMonthStartSerial) / ONE_DAY_MS
+    ) + 1;
+
+  if (tamilDay < 1 || tamilDay > 33) {
+    throw new Error(
+      `Calculated Tamil solar date is outside the expected range: ${tamilDay}.`
+    );
+  }
+
+  const effectiveStartDate = new Date(monthStart.effectiveMonthStartSerial);
+  const effectiveStartText = `${String(effectiveStartDate.getUTCDate()).padStart(2, "0")}-${String(effectiveStartDate.getUTCMonth() + 1).padStart(2, "0")}-${effectiveStartDate.getUTCFullYear()}`;
+
+  return {
+    month: TAMIL_MONTHS[language][calendarSolarSignIndex],
+    monthIndex: calendarSolarSignIndex + 1,
     day: tamilDay,
-    text: `${TAMIL_MONTHS[language][solarSignIndex]} ${tamilDay}`,
-    solarSignIndex: solarSignIndex + 1,
+    text: `${TAMIL_MONTHS[language][calendarSolarSignIndex]} ${tamilDay}`,
+    solarSignIndex: calendarSolarSignIndex + 1,
+    observedSolarSignIndex: observedSolarSignIndex + 1,
     sunLongitude: normalizedSunLongitude,
     ingress: {
-      isoUtc: ingressIso,
-      localIst: ingressLocalText,
+      isoUtc: ingress.date.toISOString(),
+      localIst: formatIstDateTime(monthStart.ingressIst),
       targetLongitude: ingress.targetLongitude,
       calculatedLongitude: ingress.longitude,
-      afterConventionalSunrise: ingressOccurredAfterSunrise,
-      effectiveMonthStartIst: (() => {
-        const effective = new Date(effectiveMonthStartSerial);
-        return `${String(effective.getUTCDate()).padStart(2, "0")}-${String(effective.getUTCMonth() + 1).padStart(2, "0")}-${effective.getUTCFullYear()}`;
-      })(),
+      afterConventionalSunrise: monthStart.ingressOccurredAfterSunrise,
+      effectiveMonthStartIst: effectiveStartText,
     },
-    calculationMethod: "astronomical-sidereal-solar-ingress-sunrise-rollover",
+    usedPreviousMonthAfterLateIngress,
+    calculationMethod:
+      "astronomical-sidereal-solar-ingress-sunrise-rollover-v2",
   };
 }
 
