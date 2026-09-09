@@ -19,6 +19,7 @@ const {
 
 const { calculateDasha } = require("../services/dashaService");
 const { calculateHoroscopeDetails } = require("../services/horoscopeDetailsService");
+const { buildAdditionalAstroAnalysis } = require("../services/additionalAstroAnalysisService");
 
 const router = express.Router();
 
@@ -226,6 +227,16 @@ router.post("/generate", async (req, res) => {
     const doshas = detectDoshas({ lagna, planets, language });
     const remedies = buildRemedies({ planets, doshas, dasha, language });
 
+    // Additional astrology outputs requested by the app. Existing calculations remain unchanged.
+    const additionalAstroAnalysis = buildAdditionalAstroAnalysis({
+      lagna,
+      planets,
+      dasha,
+      doshas,
+      yogas,
+      language,
+    });
+
     // New isolated Panchanga details. Existing chart and planet logic remains unchanged.
     const horoscopeDetails = calculateHoroscopeDetails({
       birthDate: birthDateTime.jsDate,
@@ -262,6 +273,7 @@ router.post("/generate", async (req, res) => {
       lagna,
       planets,
       dasha,
+      additionalAstroAnalysis,
       horoscopeDetails,
       chart,
       houseChart,
