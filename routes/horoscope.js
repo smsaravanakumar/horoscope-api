@@ -20,6 +20,7 @@ const {
 const { calculateDasha } = require("../services/dashaService");
 const { calculateHoroscopeDetails } = require("../services/horoscopeDetailsService");
 const { buildAdditionalAstroAnalysis } = require("../services/additionalAstroAnalysisService");
+const { buildClientAstroRules } = require("../services/clientAstroRuleService");
 
 const router = express.Router();
 
@@ -237,6 +238,15 @@ router.post("/generate", async (req, res) => {
       language,
     });
 
+    // Client-specific astrology rules. Additive only: consumes existing
+    // calculated values and does not alter any locked calculations.
+    const clientAstroRules = buildClientAstroRules({
+      gender,
+      planets,
+      dasha,
+      language,
+    });
+
     // New isolated Panchanga details. Existing chart and planet logic remains unchanged.
     const horoscopeDetails = calculateHoroscopeDetails({
       birthDate: birthDateTime.jsDate,
@@ -274,6 +284,7 @@ router.post("/generate", async (req, res) => {
       planets,
       dasha,
       additionalAstroAnalysis,
+      clientAstroRules,
       horoscopeDetails,
       chart,
       houseChart,
