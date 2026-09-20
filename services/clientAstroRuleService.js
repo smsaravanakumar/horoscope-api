@@ -355,19 +355,35 @@ function normalize360(value) {
   return result;
 }
 
-function isStrictlyBetweenOnForwardArc(degree, start, end) {
+function isWithinInclusiveForwardArc(degree, start, end) {
   const d = normalize360(degree);
   const s = normalize360(start);
   const e = normalize360(end);
 
-  if (s < e) return d > s && d < e;
-  return d > s || d < e;
+  // Client-confirmed Kala Sarpa boundary rule:
+  // a planet exactly conjunct Rahu or Ketu is treated as inside the enclosure.
+  if (s < e) return d >= s && d <= e;
+  return d >= s || d <= e;
+}
+
+function isJoinedWithNode(planet, rahu, ketu) {
+  // Client-confirmed "joint" rule:
+  // if a planet shares the same Rasi/house with Rahu or Ketu,
+  // treat that planet as lying on the Rahu-Ketu boundary even when its
+  // exact longitude falls just outside the numerical arc limit.
+  return (
+    Number(planet?.rasiNo) === Number(rahu?.rasiNo) ||
+    Number(planet?.rasiNo) === Number(ketu?.rasiNo)
+  );
 }
 
 /**
  * Client-specific Kala Sarpa rule:
  * Sun, Moon, Mars, Mercury, Jupiter, Venus and Saturn must all fall
  * between Rahu and Ketu on the same arc. Mandi is intentionally ignored.
+ * Rahu/Ketu boundary conjunctions are included as inside the arc.
+ * A planet sharing the same Rasi/house with Rahu or Ketu is also treated
+ * as joined to that node and therefore inside the enclosure.
  */
 function detectClientKalaSarpa({ planets, language }) {
   const rahu = getPlanet(planets, "rahu");
@@ -389,11 +405,13 @@ function detectClientKalaSarpa({ planets, language }) {
   }
 
   const rahuToKetu = requiredPlanets.every((planet) =>
-    isStrictlyBetweenOnForwardArc(planet.longitude, rahu.longitude, ketu.longitude)
+    isJoinedWithNode(planet, rahu, ketu) ||
+    isWithinInclusiveForwardArc(planet.longitude, rahu.longitude, ketu.longitude)
   );
 
   const ketuToRahu = requiredPlanets.every((planet) =>
-    isStrictlyBetweenOnForwardArc(planet.longitude, ketu.longitude, rahu.longitude)
+    isJoinedWithNode(planet, rahu, ketu) ||
+    isWithinInclusiveForwardArc(planet.longitude, ketu.longitude, rahu.longitude)
   );
 
   const result = rahuToKetu || ketuToRahu;

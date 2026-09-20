@@ -21,6 +21,8 @@ const { calculateDasha } = require("../services/dashaService");
 const { calculateHoroscopeDetails } = require("../services/horoscopeDetailsService");
 const { buildAdditionalAstroAnalysis } = require("../services/additionalAstroAnalysisService");
 const { buildClientAstroRules } = require("../services/clientAstroRuleService");
+const { buildPitruDosha } = require("../services/pitruDoshaService");
+const { buildNadiRuleAnalysis } = require("../services/nadiRuleService");
 
 const router = express.Router();
 
@@ -240,12 +242,37 @@ router.post("/generate", async (req, res) => {
 
     // Client-specific astrology rules. Additive only: consumes existing
     // calculated values and does not alter any locked calculations.
-    const clientAstroRules = buildClientAstroRules({
+    const existingClientAstroRules = buildClientAstroRules({
       gender,
       planets,
       dasha,
       language,
     });
+
+    // Isolated Pitru Dosha analysis. Additive only; existing client rules
+    // and all locked calculations remain unchanged.
+    const pitruDosha = buildPitruDosha({
+      lagna,
+      planets,
+      aspects,
+      language,
+    });
+
+    // Nadi rules are isolated and additive. This controlled first batch
+    // evaluates Rules 1-10 only; existing locked outputs remain unchanged.
+    const nadiRules = buildNadiRuleAnalysis({
+      lagna,
+      planets,
+      aspects,
+      dasha,
+      language,
+    });
+
+    const clientAstroRules = {
+      ...existingClientAstroRules,
+      pitruDosha,
+      nadiRules,
+    };
 
     // New isolated Panchanga details. Existing chart and planet logic remains unchanged.
     const horoscopeDetails = calculateHoroscopeDetails({
