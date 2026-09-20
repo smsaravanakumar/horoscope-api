@@ -75,6 +75,8 @@ function validateCommonApiShape(data) {
   assert(Array.isArray(client.rahuKetuAffectedPlanets), 'rahuKetuAffectedPlanets missing');
   assert(hasObject(client.pitruDosha), 'pitruDosha missing');
   assert(hasObject(client.nadiRules), 'nadiRules missing');
+  assert(hasObject(client.yogaRules), 'yogaRules missing');
+  assert(hasObject(client.mandiDosha), 'mandiDosha missing');
 
   const nadi = client.nadiRules;
   assert(nadi.totalPlannedRules === 60, `nadi totalPlannedRules expected 60, got ${nadi.totalPlannedRules}`);
@@ -92,6 +94,104 @@ function validateCommonApiShape(data) {
   for (let i = 1; i <= 60; i++) {
     assert(ruleNos.includes(i), `nadi rule ${i} missing`);
   }
+
+  const yoga = client.yogaRules;
+  assert(yoga.totalPlannedRules === 40, `yoga totalPlannedRules expected 40, got ${yoga.totalPlannedRules}`);
+  assert(yoga.implementedThroughRule === 40, `yoga implementedThroughRule expected 40, got ${yoga.implementedThroughRule}`);
+  assert(yoga.evaluatedRuleCount === 40, `yoga evaluatedRuleCount expected 40, got ${yoga.evaluatedRuleCount}`);
+  assert(yoga.pendingRuleCount === 0, `yoga pendingRuleCount expected 0, got ${yoga.pendingRuleCount}`);
+  assert(Array.isArray(yoga.ruleResults) && yoga.ruleResults.length === 40,
+    `yoga ruleResults expected 40, got ${yoga.ruleResults?.length}`);
+  assert(Array.isArray(yoga.matchedRules), 'yoga matchedRules missing');
+  assert(yoga.matchedRuleCount === yoga.matchedRules.length,
+    'yoga matchedRuleCount does not equal matchedRules.length');
+
+  const yogaRuleNos = yoga.ruleResults.map((r) => r.ruleNo);
+  assert(new Set(yogaRuleNos).size === 40, 'yoga rule numbers are not unique');
+  for (let i = 1; i <= 40; i++) {
+    assert(yogaRuleNos.includes(i), `yoga rule ${i} missing`);
+  }
+  for (const rule of yoga.ruleResults) {
+    assert(typeof rule.matched === 'boolean', `yoga rule ${rule.ruleNo} matched must be boolean`);
+    assert(typeof rule.formula === 'string' && rule.formula.trim(), `yoga rule ${rule.ruleNo} formula missing`);
+    assert(typeof rule.source === 'string' && rule.source.trim(), `yoga rule ${rule.ruleNo} source missing`);
+    assert(typeof rule.benefit === 'string' && rule.benefit.trim(), `yoga rule ${rule.ruleNo} benefit missing`);
+  }
+
+  const mandi = client.mandiDosha;
+  assert(typeof mandi.evaluated === 'boolean', 'mandiDosha.evaluated must be boolean');
+  assert(typeof mandi.result === 'boolean', 'mandiDosha.result must be boolean');
+  assert(Array.isArray(mandi.exemptHouses), 'mandiDosha.exemptHouses missing');
+  assert(JSON.stringify(mandi.exemptHouses) === JSON.stringify([3, 6, 11]),
+    `mandiDosha.exemptHouses expected [3,6,11], got ${JSON.stringify(mandi.exemptHouses)}`);
+  if (mandi.evaluated) {
+    assert(Number.isInteger(mandi.house) && mandi.house >= 1 && mandi.house <= 12,
+      `mandiDosha.house invalid: ${mandi.house}`);
+    const expectedResult = ![3, 6, 11].includes(mandi.house);
+    assert(mandi.result === expectedResult,
+      `mandiDosha.result inconsistent with house ${mandi.house}`);
+    if (mandi.result) {
+      assert(typeof mandi.problem === 'string' && mandi.problem.trim(), 'positive mandiDosha problem missing');
+      assert(Array.isArray(mandi.remedyTemples) && mandi.remedyTemples.length === 2,
+        'positive mandiDosha must return two remedy temples');
+      assert(typeof mandi.remedy === 'string' && mandi.remedy.trim(), 'positive mandiDosha remedy missing');
+    } else {
+      assert(mandi.problem === null, 'negative mandiDosha problem must be null');
+      assert(Array.isArray(mandi.remedyTemples) && mandi.remedyTemples.length === 0,
+        'negative mandiDosha remedyTemples must be empty');
+      assert(mandi.remedy === null, 'negative mandiDosha remedy must be null');
+    }
+  }
+
+  // Pancha Pakshi regression
+  assert(hasObject(client.panchaPakshi), 'panchaPakshi missing');
+  const pakshi = client.panchaPakshi;
+  assert(pakshi.evaluated === true, 'panchaPakshi.evaluated must be true');
+  assert(hasObject(pakshi.paksha), 'panchaPakshi.paksha missing');
+  assert(hasObject(pakshi.fortuneNakshatraBird), 'fortuneNakshatraBird missing');
+  assert(hasObject(pakshi.janmaNakshatraBird), 'janmaNakshatraBird missing');
+  assert(hasObject(pakshi.lagnaNakshatraBird), 'lagnaNakshatraBird missing');
+
+  // D1-D60 regression
+  assert(hasObject(client.d1D60Analysis), 'd1D60Analysis missing');
+  const d1d60 = client.d1D60Analysis;
+  assert(Array.isArray(d1d60.divisionalCharts) && d1d60.divisionalCharts.length === 60,
+    `d1D60Analysis.divisionalCharts expected 60, got ${d1d60.divisionalCharts?.length}`);
+  assert(hasObject(d1d60.nakshatraFrequency), 'd1D60Analysis.nakshatraFrequency missing');
+  assert(Array.isArray(d1d60.nakshatraFrequency.topTwo) && d1d60.nakshatraFrequency.topTwo.length === 2,
+    'd1D60Analysis topTwo must contain 2 entries');
+  assert(Array.isArray(d1d60.nakshatraFrequency.bottomTwo) && d1d60.nakshatraFrequency.bottomTwo.length === 2,
+    'd1D60Analysis bottomTwo must contain 2 entries');
+  assert(Array.isArray(d1d60.planets) && d1d60.planets.length === 9,
+    `d1D60Analysis.planets expected 9, got ${d1d60.planets?.length}`);
+  for (const planet of d1d60.planets) {
+    assert(Array.isArray(planet.allVargas) && planet.allVargas.length === 60,
+      `d1D60 planet ${planet.key} allVargas expected 60`);
+    assert(planet.affectedCount === planet.affectedCharts.length,
+      `d1D60 planet ${planet.key} affectedCount mismatch`);
+    assert(planet.badlyAffected === (planet.d1.affected && planet.d9.affected && planet.d60.affected),
+      `d1D60 planet ${planet.key} badlyAffected rule mismatch`);
+    if (planet.badlyAffected) {
+      assert(planet.remedyAllowed === false, `badly affected ${planet.key} must disable remedy`);
+      assert(planet.remedy === null, `badly affected ${planet.key} remedy must be null`);
+    }
+  }
+
+  // Current Gocharam regression - separate from natal chart
+  assert(hasObject(data.currentGocharam), 'currentGocharam missing');
+  const gocharam = data.currentGocharam;
+  assert(gocharam.evaluated === true, 'currentGocharam.evaluated must be true');
+  assert(gocharam.type === 'current_gocharam', `unexpected currentGocharam.type: ${gocharam.type}`);
+  assert(typeof gocharam.dateTimeUtc === 'string' && gocharam.dateTimeUtc.trim(),
+    'currentGocharam.dateTimeUtc missing');
+  assert(hasObject(gocharam.coordinates), 'currentGocharam.coordinates missing');
+  assert(hasObject(gocharam.lagna), 'currentGocharam.lagna missing');
+  assert(Array.isArray(gocharam.planets) && gocharam.planets.length >= 10,
+    'currentGocharam planets missing');
+  assert(hasObject(gocharam.chart) && Object.keys(gocharam.chart).length === 12,
+    'currentGocharam chart must contain 12 signs');
+  assert(hasObject(gocharam.houseChart) && Object.keys(gocharam.houseChart).length === 12,
+    'currentGocharam houseChart must contain 12 houses');
 
   assert(typeof client.clientKalaSarpa.result === 'boolean', 'clientKalaSarpa.result must be boolean');
   assert(typeof client.pitruDosha.result === 'boolean', 'pitruDosha.result must be boolean');

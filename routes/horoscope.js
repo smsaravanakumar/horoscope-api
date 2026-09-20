@@ -23,6 +23,11 @@ const { buildAdditionalAstroAnalysis } = require("../services/additionalAstroAna
 const { buildClientAstroRules } = require("../services/clientAstroRuleService");
 const { buildPitruDosha } = require("../services/pitruDoshaService");
 const { buildNadiRuleAnalysis } = require("../services/nadiRuleService");
+const { buildClientYogaRules } = require("../services/clientYogaRuleService");
+const { buildMandiDosha } = require("../services/mandiDoshaService");
+const { buildPanchaPakshiAnalysis } = require("../services/panchaPakshiService");
+const { buildD1D60Analysis } = require("../services/d1D60AnalysisService");
+const { buildCurrentGocharam } = require("../services/gocharamService");
 
 const router = express.Router();
 
@@ -268,11 +273,64 @@ router.post("/generate", async (req, res) => {
       language,
     });
 
+    // Client-supplied classical Yoga rules are isolated and additive.
+    // Rules 1-10 are frozen; controlled second batch extends evaluation through Rule 20.
+    const yogaRules = buildClientYogaRules({
+      lagna,
+      planets,
+      aspects,
+      language,
+      gender,
+      birthDate: birthDateTime.jsDate,
+      latitude: coords.latitude,
+      longitude: coords.longitude,
+    });
+
+    // Client-specific Mandi Dosha is isolated and additive. It uses the
+    // already-calculated Mandi position and does not change Mandi astronomy.
+    const mandiDosha = buildMandiDosha({
+      lagna,
+      planets,
+      language,
+    });
+
+    // Client-supplied Nakshatra-to-Pancha-Pakshi table. Additive only.
+    // Uses already-calculated birth Paksha, Fortune point, Janma star and Lagna star.
+    const panchaPakshi = buildPanchaPakshiAnalysis({
+      lagna,
+      planets,
+      fortunePoint: additionalAstroAnalysis?.fortunePoint,
+      language,
+    });
+
+    // Client D1-D60 affected-planet foundation. Additive only.
+    // Controlled Phase 1 evaluates D1, D9 and the supplied D60 Shashtiamsha table.
+    const d1D60Analysis = buildD1D60Analysis({
+      lagna,
+      planets,
+      dasha,
+      language,
+    });
+
     const clientAstroRules = {
       ...existingClientAstroRules,
       pitruDosha,
       nadiRules,
+      yogaRules,
+      mandiDosha,
+      panchaPakshi,
+      d1D60Analysis,
     };
+
+    // Current-date/current-time Gocharam (transit) chart. Additive only.
+    // Uses the same resolved place coordinates while leaving the natal chart untouched.
+    const currentGocharam = buildCurrentGocharam({
+      date: new Date(),
+      latitude: coords.latitude,
+      longitude: coords.longitude,
+      language,
+      place: String(place).trim(),
+    });
 
     // New isolated Panchanga details. Existing chart and planet logic remains unchanged.
     const horoscopeDetails = calculateHoroscopeDetails({
@@ -320,6 +378,7 @@ router.post("/generate", async (req, res) => {
       yogas,
       doshas,
       remedies,
+      currentGocharam,
     });
   } catch (error) {
     console.error("Horoscope generation failed:", error);
