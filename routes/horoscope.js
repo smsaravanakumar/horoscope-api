@@ -163,6 +163,8 @@ router.post("/generate", async (req, res) => {
       birthDate,
       birthTime,
       place,
+      latitude,
+      longitude,
       language = "ta",
     } = req.body || {};
 
@@ -183,14 +185,49 @@ router.post("/generate", async (req, res) => {
     // Convert the Flutter date/time values into one valid IST Date object.
     const birthDateTime = buildBirthDateTime(birthDate, birthTime);
 
-    // Convert the place of birth into latitude and longitude.
-    const coords = await getCoordinates(String(place).trim());
+    // Resolve birthplace coordinates. If the caller already has latitude/longitude
+    // (for example from the Flutter place picker), use them directly and avoid an
+    // unnecessary external geocoding request. Place-only requests remain backward
+    // compatible and continue to use the existing geocoder.
+    const hasLatitude =
+      latitude !== undefined &&
+      latitude !== null &&
+      String(latitude).trim() !== "";
+    const hasLongitude =
+      longitude !== undefined &&
+      longitude !== null &&
+      String(longitude).trim() !== "";
+
+    if (hasLatitude !== hasLongitude) {
+      return res.status(400).json({
+        success: false,
+        message: "latitude and longitude must be provided together.",
+      });
+    }
+
+    let coords;
+
+    if (hasLatitude && hasLongitude) {
+      coords = {
+        latitude: Number(latitude),
+        longitude: Number(longitude),
+      };
+    } else {
+      coords = await getCoordinates(String(place).trim());
+    }
 
     if (
       !Number.isFinite(coords.latitude) ||
-      !Number.isFinite(coords.longitude)
+      !Number.isFinite(coords.longitude) ||
+      coords.latitude < -90 ||
+      coords.latitude > 90 ||
+      coords.longitude < -180 ||
+      coords.longitude > 180
     ) {
-      throw new Error("The birthplace coordinates are invalid.");
+      return res.status(400).json({
+        success: false,
+        message: "The birthplace coordinates are invalid.",
+      });
     }
 
     // Calculate the core sidereal planet positions and Lagna.
