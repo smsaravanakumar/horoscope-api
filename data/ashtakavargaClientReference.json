@@ -1,0 +1,172 @@
+{
+  "referenceId": "CLIENT_ASHTAKAVARGA_1971-04-04_07-52_KANNIYAKUMARI",
+  "purpose": "Validation fixture only. Do not use as runtime calculation data.",
+  "status": "frozen",
+  "birthDetails": {
+    "date": "1971-04-04",
+    "time": "07:52",
+    "place": "Kanniyakumari"
+  },
+  "columnOrder": [
+    "rasi",
+    "sun",
+    "moon",
+    "mars",
+    "mercury",
+    "jupiter",
+    "venus",
+    "saturn",
+    "total"
+  ],
+  "rows": [
+    {
+      "rasi": 1,
+      "sun": 4,
+      "moon": 4,
+      "mars": 3,
+      "mercury": 6,
+      "jupiter": 3,
+      "venus": 3,
+      "saturn": 4,
+      "total": 27
+    },
+    {
+      "rasi": 2,
+      "sun": 2,
+      "moon": 5,
+      "mars": 2,
+      "mercury": 4,
+      "jupiter": 5,
+      "venus": 4,
+      "saturn": 2,
+      "total": 24
+    },
+    {
+      "rasi": 3,
+      "sun": 4,
+      "moon": 5,
+      "mars": 3,
+      "mercury": 4,
+      "jupiter": 5,
+      "venus": 6,
+      "saturn": 3,
+      "total": 30
+    },
+    {
+      "rasi": 4,
+      "sun": 5,
+      "moon": 2,
+      "mars": 4,
+      "mercury": 4,
+      "jupiter": 4,
+      "venus": 4,
+      "saturn": 2,
+      "total": 25
+    },
+    {
+      "rasi": 5,
+      "sun": 3,
+      "moon": 6,
+      "mars": 3,
+      "mercury": 4,
+      "jupiter": 5,
+      "venus": 6,
+      "saturn": 1,
+      "total": 28
+    },
+    {
+      "rasi": 6,
+      "sun": 6,
+      "moon": 6,
+      "mars": 6,
+      "mercury": 5,
+      "jupiter": 6,
+      "venus": 4,
+      "saturn": 7,
+      "total": 40
+    },
+    {
+      "rasi": 7,
+      "sun": 3,
+      "moon": 5,
+      "mars": 3,
+      "mercury": 5,
+      "jupiter": 4,
+      "venus": 4,
+      "saturn": 3,
+      "total": 27
+    },
+    {
+      "rasi": 8,
+      "sun": 2,
+      "moon": 3,
+      "mars": 1,
+      "mercury": 3,
+      "jupiter": 4,
+      "venus": 5,
+      "saturn": 2,
+      "total": 20
+    },
+    {
+      "rasi": 9,
+      "sun": 5,
+      "moon": 3,
+      "mars": 5,
+      "mercury": 5,
+      "jupiter": 6,
+      "venus": 4,
+      "saturn": 4,
+      "total": 32
+    },
+    {
+      "rasi": 10,
+      "sun": 6,
+      "moon": 5,
+      "mars": 5,
+      "mercury": 5,
+      "jupiter": 6,
+      "venus": 2,
+      "saturn": 4,
+      "total": 33
+    },
+    {
+      "rasi": 11,
+      "sun": 3,
+      "moon": 5,
+      "mars": 3,
+      "mercury": 6,
+      "jupiter": 3,
+      "venus": 7,
+      "saturn": 4,
+      "total": 31
+    },
+    {
+      "rasi": 12,
+      "sun": 5,
+      "moon": 0,
+      "mars": 1,
+      "mercury": 3,
+      "jupiter": 5,
+      "venus": 3,
+      "saturn": 3,
+      "total": 20
+    }
+  ],
+  "checksums": {
+    "planetTotals": {
+      "sun": 48,
+      "moon": 49,
+      "mars": 39,
+      "mercury": 54,
+      "jupiter": 56,
+      "venus": 52,
+      "saturn": 39
+    },
+    "grandTotal": 337
+  },
+  "notes": [
+    "Extracted from the client-supplied Ashtakavarga table image.",
+    "This file is for automated validation/UAT only.",
+    "The Step 5B calculation engine must compute values dynamically for any birth details and must not read this fixture during runtime generation."
+  ]
+}

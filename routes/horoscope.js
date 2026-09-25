@@ -28,6 +28,8 @@ const { buildMandiDosha } = require("../services/mandiDoshaService");
 const { buildPanchaPakshiAnalysis } = require("../services/panchaPakshiService");
 const { buildD1D60Analysis } = require("../services/d1D60AnalysisService");
 const { buildCurrentGocharam } = require("../services/gocharamService");
+const { buildMoleScarAnalysis } = require("../services/moleScarAnalysisService");
+const { buildAshtakavarga } = require("../services/ashtakavargaService");
 
 const router = express.Router();
 
@@ -230,6 +232,12 @@ router.post("/generate", async (req, res) => {
     const chart = buildSouthIndianChart({ lagna, planets });
     const houseChart = buildHouseChart({ lagna, planets });
     const navamsaChart = buildNavamsaChart({ lagna, planets });
+
+    // Dynamic Parashari Bhinnashtakavarga / Sarvashtakavarga. Additive only.
+    // Uses the already-calculated natal Lagna and seven classical planets;
+    // Rahu, Ketu and Mandi are intentionally ignored by the engine.
+    const ashtakavarga = buildAshtakavarga({ lagna, planets });
+
     const aspects = buildAspectEngine({ lagna, planets });
     const yogas = detectYogas({ lagna, planets, language });
     const doshas = detectDoshas({ lagna, planets, language });
@@ -332,6 +340,17 @@ router.post("/generate", async (req, res) => {
       place: String(place).trim(),
     });
 
+    // Client Mole / Scar rule analysis. Additive only.
+    // Uses the already-calculated natal Lagna, planets and aspect context.
+    // Does not alter any existing horoscope calculation or client rule output.
+    const moleScarAnalysis = buildMoleScarAnalysis({
+      lagna,
+      planets,
+      aspects,
+      gender,
+      language,
+    });
+
     // New isolated Panchanga details. Existing chart and planet logic remains unchanged.
     const horoscopeDetails = calculateHoroscopeDetails({
       birthDate: birthDateTime.jsDate,
@@ -374,11 +393,13 @@ router.post("/generate", async (req, res) => {
       chart,
       houseChart,
       navamsaChart,
+      ashtakavarga,
       aspects,
       yogas,
       doshas,
       remedies,
       currentGocharam,
+      moleScarAnalysis,
     });
   } catch (error) {
     console.error("Horoscope generation failed:", error);

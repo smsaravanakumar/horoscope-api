@@ -66,6 +66,12 @@ function validateCommonApiShape(data) {
   assert(Array.isArray(data.yogas), 'yogas missing');
   assert(Array.isArray(data.doshas), 'doshas missing');
   assert(Array.isArray(data.remedies), 'remedies missing');
+  assert(hasObject(data.moleScarAnalysis), 'moleScarAnalysis missing');
+  assert(typeof data.moleScarAnalysis.evaluated === 'boolean', 'moleScarAnalysis.evaluated must be boolean');
+  assert(Array.isArray(data.moleScarAnalysis.matchedRules), 'moleScarAnalysis.matchedRules missing');
+  assert(Array.isArray(data.moleScarAnalysis.observationDependentRules), 'moleScarAnalysis.observationDependentRules missing');
+  assert(Array.isArray(data.moleScarAnalysis.referenceRules), 'moleScarAnalysis.referenceRules missing');
+  assert(Array.isArray(data.moleScarAnalysis.missingRuleNos), 'moleScarAnalysis.missingRuleNos missing');
 
   const client = data.clientAstroRules;
   assert(hasObject(client.dashaBhuktiTemple), 'client dashaBhuktiTemple missing');
