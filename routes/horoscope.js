@@ -160,6 +160,7 @@ router.post("/generate", async (req, res) => {
     const {
       name,
       gender,
+      maritalStatus,
       birthDate,
       birthTime,
       place,
@@ -294,6 +295,7 @@ router.post("/generate", async (req, res) => {
     // calculated values and does not alter any locked calculations.
     const existingClientAstroRules = buildClientAstroRules({
       gender,
+      maritalStatus,
       planets,
       dasha,
       language,
@@ -407,6 +409,7 @@ router.post("/generate", async (req, res) => {
       input: {
         name: name || "",
         gender: gender || "",
+        maritalStatus: maritalStatus || "",
         birthDate,
         birthTime,
         place: String(place).trim(),

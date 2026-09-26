@@ -320,6 +320,95 @@ function buildProfessionDeity({ planets, language }) {
   };
 }
 
+/**
+ * Client-supplied special deity outputs.
+ *
+ * IMPORTANT: these rules intentionally follow the client's requested
+ * planet mapping exactly. Do not replace them with general astrology
+ * interpretations unless the client asks for a future change.
+ */
+function buildPlanetPurposeDeity({ planets, planetKey, language }) {
+  const planet = getPlanet(planets, planetKey);
+  const temple = buildTempleResult(planet, language);
+  if (!temple) return null;
+
+  return {
+    rulePlanetKey: planetKey,
+    ...temple,
+  };
+}
+
+function normalizeMaritalStatus(maritalStatus) {
+  const value = String(maritalStatus || "").trim().toLowerCase();
+
+  if (
+    [
+      "unmarried",
+      "single",
+      "not married",
+      "திருமணம் ஆகவில்லை",
+      "திருமணமாகவில்லை",
+      "திருமணம் ஆகாதவர்",
+      "திருமணமாகாதவர்",
+    ].includes(value)
+  ) {
+    return "unmarried";
+  }
+
+  if (
+    [
+      "married",
+      "திருமணம் ஆனவர்",
+      "திருமணமானவர்",
+      "திருமணம் ஆகிவிட்டது",
+    ].includes(value)
+  ) {
+    return "married";
+  }
+
+  return null;
+}
+
+function buildGovernmentPoliticsDeity({ planets, language }) {
+  return buildPlanetPurposeDeity({
+    planets,
+    planetKey: "sun",
+    language,
+  });
+}
+
+function buildEducationDeity({ planets, language }) {
+  return buildPlanetPurposeDeity({
+    planets,
+    planetKey: "mercury",
+    language,
+  });
+}
+
+function buildMarriageDeity({ gender, maritalStatus, planets, language }) {
+  const normalizedGender = normalizeGender(gender);
+  const normalizedMaritalStatus = normalizeMaritalStatus(maritalStatus);
+
+  // Client rule: marriage deity must be returned only for an unmarried person.
+  if (!normalizedGender || normalizedMaritalStatus !== "unmarried") {
+    return null;
+  }
+
+  // Client-specific mapping:
+  //   unmarried male   -> Venus Rasi deity
+  //   unmarried female -> Mars Rasi deity
+  const planetKey = normalizedGender === "male" ? "venus" : "mars";
+  const temple = buildTempleResult(getPlanet(planets, planetKey), language);
+  if (!temple) return null;
+
+  return {
+    gender: normalizedGender,
+    maritalStatus: normalizedMaritalStatus,
+    rulePlanetKey: planetKey,
+    ...temple,
+  };
+}
+
 function buildKetuRemedy({ planets, language }) {
   const ketu = getPlanet(planets, "ketu");
   if (!ketu || !RASI_WEEKDAYS[ketu.rasiNo]) return null;
@@ -484,6 +573,7 @@ function detectRahuKetuAffectedPlanets({ planets, language }) {
 
 function buildClientAstroRules({
   gender,
+  maritalStatus,
   planets,
   dasha,
   language = "ta",
@@ -492,6 +582,17 @@ function buildClientAstroRules({
     dashaBhuktiTemple: buildDashaBhuktiTemple({ planets, dasha, language }),
     jeevanadiDeity: buildJeevanadiDeity({ gender, planets, language }),
     professionDeity: buildProfessionDeity({ planets, language }),
+    governmentPoliticsDeity: buildGovernmentPoliticsDeity({
+      planets,
+      language,
+    }),
+    educationDeity: buildEducationDeity({ planets, language }),
+    marriageDeity: buildMarriageDeity({
+      gender,
+      maritalStatus,
+      planets,
+      language,
+    }),
     jeevanadiMantra: {
       ta: "ஒம் ஹம் அம் தம் காகபுசுண்டரே வசி வசி சிவயநம",
       en: "Om Ham Am Tham Kagabusundare Vasi Vasi Sivayanama",
@@ -513,6 +614,10 @@ function buildClientAstroRules({
 module.exports = {
   buildClientAstroRules,
   // Exported for focused unit testing only.
+  normalizeMaritalStatus,
+  buildGovernmentPoliticsDeity,
+  buildEducationDeity,
+  buildMarriageDeity,
   detectClientKalaSarpa,
   detectRahuKetuAffectedPlanets,
   fourthRasiFrom,
