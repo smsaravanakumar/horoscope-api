@@ -30,6 +30,7 @@ const { buildD1D60Analysis } = require("../services/d1D60AnalysisService");
 const { buildCurrentGocharam } = require("../services/gocharamService");
 const { buildMoleScarAnalysis } = require("../services/moleScarAnalysisService");
 const { buildAshtakavarga } = require("../services/ashtakavargaService");
+const { buildBirthCalculationDetails } = require("../services/birthCalculationDetailsService");
 
 const router = express.Router();
 
@@ -404,6 +405,20 @@ router.post("/generate", async (req, res) => {
       language,
     });
 
+    // Client-reference birth calculation details. Additive only.
+    // Uses the existing frozen planet/Lagna values plus astronomical sunrise/sunset.
+    // No existing horoscope result is replaced or recalculated.
+    const birthCalculationDetails = buildBirthCalculationDetails({
+      birthDate: birthDateTime.jsDate,
+      latitude: coords.latitude,
+      longitude: coords.longitude,
+      ayanamsa: rawPlanets.ayanamsa,
+      lagna,
+      planets,
+      dasha,
+      language,
+    });
+
     return res.json({
       success: true,
       input: {
@@ -430,6 +445,7 @@ router.post("/generate", async (req, res) => {
       additionalAstroAnalysis,
       clientAstroRules,
       horoscopeDetails,
+      birthCalculationDetails,
       chart,
       houseChart,
       navamsaChart,
