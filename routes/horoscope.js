@@ -1,3 +1,4 @@
+const { buildClientChartCalculations } = require('../services/clientChartCalculationsService');
 const express = require("express");
 
 const { getCoordinates } = require("../services/geocodeService");
@@ -419,8 +420,13 @@ router.post("/generate", async (req, res) => {
       language,
     });
 
+    const clientChartCalculations = buildClientChartCalculations({
+      lagna, planets, horoscopeDetails, language,
+    });
+
     return res.json({
       success: true,
+      clientChartCalculations,
       input: {
         name: name || "",
         gender: gender || "",
