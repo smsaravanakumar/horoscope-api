@@ -4,6 +4,8 @@ $reportPath = Join-Path $PSScriptRoot 'API_CHART_UAT_REPORT.txt'
 Start-Transcript -Path $reportPath -Force
 try {
   $suites = @(
+    'chartPlanetaryTables.test.js',
+    'chartPlanetaryTablesApiIntegration.test.js',
     'clientChartCalculations.test.js',
     'clientChartCalculationsApiIntegration.test.js',
     'fullRegressionUatStep5D.test.js',

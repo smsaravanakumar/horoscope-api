@@ -2,6 +2,7 @@
 
 // Additive outputs only: frozen chart, navamsaChart and D1-D60 analysis stay intact.
 // References and exact conventions: API_CHART_CALCULATIONS.md.
+const { buildChartPlanetaryTable } = require('./chartPlanetaryTableService');
 const { getNavamsaRasiNumber } = require('./d1D60AnalysisService');
 const SIGNS = {
   en: ['Aries','Taurus','Gemini','Cancer','Leo','Virgo','Libra','Scorpio','Sagittarius','Capricorn','Aquarius','Pisces'],
@@ -110,12 +111,15 @@ function buildClientChartCalculations({lagna, planets, horoscopeDetails, languag
     schemaVersion:1,
     navamsaDetails:{division:9,calculationMethod:'existing_Parashara_D9_signs',
       degreeBasis:'transformed_D9_degrees_within_sign', lagna:d9Lagna, planets:d9Planets,
-      chart:chart(d9Lagna,d9Planets)},
+      chart:chart(d9Lagna,d9Planets),
+      planetaryTable:buildChartPlanetaryTable({lagna:d9Lagna,planets:d9Planets,language})},
     shashtiamsa:{division:60,calculationMethod:'half_degree_count_from_natal_sign',
       source:'https://blog.indianastrologysoftware.com/sashtiamsa-d60/',
       validation:'published_AstroVision_sample_sign_positions_tested',
-      legacyD1D60Unchanged:true, lagna:d60Lagna,planets:d60Planets,chart:chart(d60Lagna,d60Planets)},
+      legacyD1D60Unchanged:true, lagna:d60Lagna,planets:d60Planets,chart:chart(d60Lagna,d60Planets),
+      planetaryTable:buildChartPlanetaryTable({lagna:d60Lagna,planets:d60Planets,language})},
     karakamsa:{...referenceLagna(d9Planets,'d9',language),
+      planetaryTable:buildChartPlanetaryTable({planets:d9Planets,language}),
       label:language === 'ta' ? 'D9 அதிக பாகை அடிப்படையிலான லக்னம் (வாடிக்கையாளர் விதி)' : 'Highest D9 degree reference Lagna (client rule)',
       astroVisionEquivalence:'not_claimed_custom_client_rule'},
     traditionalKarakamsa:referenceLagna(d9Planets,'natal',language),

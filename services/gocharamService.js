@@ -67,6 +67,7 @@ function buildCurrentGocharam({
     planets,
     chart: deps.buildSouthIndianChart({ lagna, planets }),
     houseChart: deps.buildHouseChart({ lagna, planets }),
+    planetaryTable: require('./chartPlanetaryTableService').buildChartPlanetaryTable({lagna, planets, language}),
   };
 }
 

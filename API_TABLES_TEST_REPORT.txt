@@ -1,0 +1,718 @@
+chartPlanetaryTables.test.js
+✔ known longitude boundaries, status and input immutability (1.466482ms)
+✔ Tamil and English preserve numeric values and excluded bodies have no status (0.977371ms)
+ℹ tests 2
+ℹ suites 0
+ℹ pass 2
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 8.142905
+
+chartPlanetaryTablesApiIntegration.test.js
+PASS ta: HTTP response, D9 positions, D60, Karakamsa, Thithi Soonya, existing values
+PASS ta: all four new tables, D9 reference equivalence, no fabricated Lagna degree
+PASS ta: ALL previous response fields deep-equal latest uploaded baseline
+PASS en: HTTP response, D9 positions, D60, Karakamsa, Thithi Soonya, existing values
+PASS en: all four new tables, D9 reference equivalence, no fabricated Lagna degree
+PASS en: ALL previous response fields deep-equal latest uploaded baseline
+
+clientChartCalculations.test.js
+✔ D60 reproduces all 11 Astro-Vision published sample signs (1.126951ms)
+✔ D9 reproduces all 11 sample signs and preserves existing chart positions (3.434604ms)
+✔ client D9-degree rule differs from traditional natal-degree Karakamsa (2.684488ms)
+✔ all 30 tithis, both pakshas, full/new moon and four-sign Chaturdashi (0.527447ms)
+✔ D60 half-degree boundaries, sign crossing, normalization and numeric rejection (0.366761ms)
+✔ ties do not silently pick an arbitrary planet; seven planets are required (0.434621ms)
+✔ nodes/upagrahas excluded from ranking; retrograde does not reverse degrees (0.886937ms)
+✔ reuses existing Mudakku/Yogi values; preserves overlapping indicators (0.493017ms)
+✔ input unchanged and Tamil/English share numeric calculations (1.118229ms)
+ℹ tests 9
+ℹ suites 0
+ℹ pass 9
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 19.457227
+
+clientChartCalculationsApiIntegration.test.js
+PASS ta: HTTP response, D9 positions, D60, Karakamsa, Thithi Soonya, existing values
+PASS en: HTTP response, D9 positions, D60, Karakamsa, Thithi Soonya, existing values
+
+fullRegressionUatStep5D.test.js
+========================================================================
+API STEP 5D - FULL REGRESSION / UAT
+========================================================================
+Test suites scheduled: 20
+
+------------------------------------------------------------------------
+RUN: panchaPakshi.test.js
+------------------------------------------------------------------------
+PASS: Ashwini is Nakshatra 1
+PASS: Revati is Nakshatra 27
+PASS: Group 1 waxing = Vulture
+PASS: Group 1 waning = Peacock
+PASS: Group 2 waxing = Owl
+PASS: Group 2 waning = Cock
+PASS: Group 3 waxing = Crow
+PASS: Group 3 waning = Crow
+PASS: Group 4 waxing = Cock
+PASS: Group 4 waning = Owl
+PASS: Group 5 waxing = Peacock
+PASS: Group 5 waning = Vulture
+PASS: Paksha detects waxing
+PASS: Paksha detects waning
+PASS: Tamil output returns all 3 requested birds
+PASS: English output is localized
+
+TOTAL PASS : 16
+TOTAL FAIL : 0
+
+PANCHA PAKSHI BASIC UAT: PASS
+
+SUITE PASS: panchaPakshi.test.js
+
+------------------------------------------------------------------------
+RUN: gocharam.test.js
+------------------------------------------------------------------------
+PASS: Gocharam is evaluated
+PASS: Current instant is retained
+PASS: Transit type is identified
+PASS: Reference place is retained
+PASS: Coordinates are retained
+PASS: Current Lagna is returned
+PASS: All nine classical grahas are returned
+PASS: Mandi remains structurally consistent
+PASS: Every current planet has Rasi/Nakshatra/Pada
+PASS: South Indian current chart has 12 signs
+PASS: Current house chart has 12 houses
+PASS: Tamil localization is passed through
+PASS: English localization is passed through
+PASS: Birth date/time are not required by Gocharam service
+PASS: Ayanamsa is returned
+
+TOTAL PASS : 15
+TOTAL FAIL : 0
+
+CURRENT GOCHARAM BASIC UAT: PASS
+
+SUITE PASS: gocharam.test.js
+
+------------------------------------------------------------------------
+RUN: mandiDosha.test.js
+------------------------------------------------------------------------
+PASS: Mandi Dosha positive in house 1
+PASS: Mandi Dosha positive in house 2
+PASS: Mandi Dosha positive in house 4
+PASS: Mandi Dosha positive in house 5
+PASS: Mandi Dosha positive in house 7
+PASS: Mandi Dosha positive in house 8
+PASS: Mandi Dosha positive in house 9
+PASS: Mandi Dosha positive in house 10
+PASS: Mandi Dosha positive in house 12
+PASS: Mandi Dosha absent in exempt house 3
+PASS: Mandi Dosha absent in exempt house 6
+PASS: Mandi Dosha absent in exempt house 11
+PASS: House-specific Tamil effect is returned
+PASS: English localization is available
+PASS: Missing Mandi is safely unevaluated
+
+TOTAL PASS : 15
+TOTAL FAIL : 0
+
+MANDI DOSHA BASIC UAT: PASS
+
+SUITE PASS: mandiDosha.test.js
+
+------------------------------------------------------------------------
+RUN: yogaRules01to10.test.js
+------------------------------------------------------------------------
+PASS: R1 positive: Jupiter 4th from Moon
+PASS: R1 negative: Jupiter 2nd from Moon
+PASS: R2 positive: 9L and 10L conjunction
+PASS: R2 positive: 9L and 10L opposition
+PASS: R2 negative: no conjunction/opposition/exchange
+PASS: R3 positive: debilitated Jupiter in Capricorn, dispositor Saturn kendra from Lagna
+PASS: R3 negative: debilitated Jupiter, cancellation planets not kendra from Lagna/Moon
+PASS: R4 positive: dusthana lords exchange
+PASS: R4 positive: two dusthana lords conjunct in dusthana without benefic aspect
+PASS: R5 positive: Jupiter own sign in Lagna kendra
+PASS: R5 negative: Jupiter own sign but non-kendra
+PASS: R6 positive: Moon Mars conjunction
+PASS: R6 positive: Moon Mars mutual 7th
+PASS: R7 positive: Sun Mercury same Rasi even when Mercury combust flag true
+PASS: R7 negative: Sun Mercury different Rasi
+PASS: R8 positive: Jupiter alone 10th from Lagna
+PASS: R8 negative: Jupiter 10th but not alone
+PASS: R9 positive: strong 9L in trine and Venus own/exalted in kendra
+PASS: R9 negative: Venus own/exalted but not kendra
+PASS: R10 positive: Jupiter Mars conjunction
+PASS: R10 positive: Mars 5th from Jupiter
+PASS: R10 negative: no conjunction/trinal relation
+PASS: Batch metadata after Rules 31-40 extension
+PASS: Every Rule 1-10 retains formula/source/benefit
+
+TOTAL PASS : 24
+TOTAL FAIL : 0
+
+YOGA RULES 1-10 BASIC UAT: PASS
+
+SUITE PASS: yogaRules01to10.test.js
+
+------------------------------------------------------------------------
+RUN: yogaRules11to20.test.js
+------------------------------------------------------------------------
+PASS: R11 positive: Jupiter/Venus/Mercury in 6/7/8 from Moon
+PASS: R11 negative: one benefic outside 6/7/8 from Moon
+PASS: R12 positive: Venus own sign in Lagna kendra
+PASS: R12 negative: Venus not own/exalted
+PASS: R13 positive: Jupiter/Venus/alone Mercury in Upachaya from Lagna
+PASS: R13 negative: Mercury not alone
+PASS: R14 positive: Mercury/Jupiter/Venus placed correctly and Jupiter friendly
+PASS: R14 negative: Jupiter not own/exalted/friendly
+PASS: R15 positive: planets on both sides of Moon
+PASS: R15 negative: only one side of Moon occupied
+PASS: R16 positive: eligible planets on both sides of Sun
+PASS: R16 negative: only one side of Sun occupied
+PASS: R17 positive: strong Lagna lord in kendra + Jupiter aspect to Lagna
+PASS: R17 negative: Lagna lord not strong/in kendra
+PASS: R18 positive: only benefics in kendras, 6th/8th empty
+PASS: R18 positive alternate: Lagna lord and 12th lord mutual kendras
+PASS: R18 negative: malefic in kendra and alternate branch absent
+PASS: R19 positive male: day birth + Lagna/Sun/Moon odd signs
+PASS: R19 positive female: night birth + Lagna/Sun/Moon even signs
+PASS: R19 negative male: same odd signs but night birth
+PASS: R20 positive: Saturn own sign in Lagna kendra
+PASS: R20 negative: Saturn own sign but not in kendra
+PASS: Batch metadata: Rules 1-40 evaluated after extension
+PASS: Every Rule 11-20 retains formula/source/benefit
+
+TOTAL PASS : 24
+TOTAL FAIL : 0
+
+YOGA RULES 11-20 BASIC UAT: PASS
+
+SUITE PASS: yogaRules11to20.test.js
+
+------------------------------------------------------------------------
+RUN: yogaRules21to30.test.js
+------------------------------------------------------------------------
+PASS: R21 positive: Mars own sign in Lagna kendra
+PASS: R21 negative: Mars own sign but not in Lagna kendra
+PASS: R22 positive: Mercury own sign in Lagna kendra
+PASS: R22 negative: Mercury own sign but not in Lagna kendra
+PASS: R23 positive branch 1: Jupiter in 2nd + Mercury and Venus relation
+PASS: R23 positive branch 2: Jupiter in Mercury sign + benefic aspect
+PASS: R23 negative: Jupiter in 9th but only Mercury relation
+PASS: R24 positive: eligible planet 2nd from Moon
+PASS: R24 negative: no eligible planet 2nd from Moon
+PASS: R25 positive: eligible planet 12th from Moon
+PASS: R25 negative: no eligible planet 12th from Moon
+PASS: R26 positive: eligible planet 2nd from Sun
+PASS: R26 negative: no eligible planet 2nd from Sun
+PASS: R27 positive: eligible planet 12th from Sun
+PASS: R27 negative: no eligible planet 12th from Sun
+PASS: R28 positive branch 1: strong Lagna lord + 5L/6L mutual kendra
+PASS: R28 positive branch 2: Lagna lord and 10L movable + 9L exalted
+PASS: R28 negative: Lagna lord weak and alternate branch absent
+PASS: R29 positive: 4L/9L mutual kendra + strong Lagna lord
+PASS: R29 negative: 4L/9L mutual kendra but Lagna lord not strong
+PASS: R30 positive: exalted 7L in kendra + 9L/10L conjunction or opposition relation
+PASS: R30 negative: 10L lacks relation to exalted 7L
+PASS: Batch metadata: Rules 1-40 evaluated
+PASS: Every Rule 21-30 retains formula/source/benefit
+
+TOTAL PASS : 24
+TOTAL FAIL : 0
+
+YOGA RULES 21-30 BASIC UAT: PASS
+
+SUITE PASS: yogaRules21to30.test.js
+
+------------------------------------------------------------------------
+RUN: yogaRules31to40.test.js
+------------------------------------------------------------------------
+PASS: R31 positive: 1L and 2L exchange
+PASS: R31 positive: 5L and 9L exchange
+PASS: R31 negative: no eligible lord exchange
+PASS: R32 positive: benefics on 2nd and 12th sides of Lagna
+PASS: R32 negative: no reference hemmed by qualifying benefics
+PASS: R33 positive: Moon lord strong in kendra/trine + Jupiter aspect to Moon
+PASS: R33 negative: Jupiter does not aspect Moon
+PASS: R34 positive: Lagna lord conjunct Moon + Moon lord kendra/trine + benefic aspect Lagna
+PASS: R34 negative: no benefic aspect to Lagna
+PASS: R35 positive: Lagna lord/Jupiter/Venus in kendras + strong 9L
+PASS: R35 negative: Venus outside kendra
+PASS: R36 positive: Jupiter kendra from 9L, Venus kendra from 11L, Mercury kendra from Lagna
+PASS: R36 positive alternate: Mercury kendra from 10L
+PASS: R36 negative: Venus not kendra from 11L
+PASS: R37 positive: exact 5L->9H, 9L->10H, 10L->5H placement
+PASS: R37 positive relation branch: all three lords connected
+PASS: R37 negative: neither placement nor connected relation
+PASS: R38 positive: strong benefic in 5/6/7 + strong malefic in 1/3/11
+PASS: R38 negative: qualifying benefic side but no strong malefic in 1/3/11
+PASS: R39 positive: Sun 2nd from Mercury + Moon 11th from Sun + Jupiter 5th from Moon
+PASS: R39 negative: Jupiter not 5th/9th from Moon
+PASS: R40 positive: seven classical planets in seven distinct Rasis
+PASS: R40 negative: two classical planets share a Rasi
+PASS: Batch metadata: all Rules 1-40 evaluated
+PASS: Every Rule 31-40 retains formula/source/benefit
+
+TOTAL PASS : 25
+TOTAL FAIL : 0
+
+YOGA RULES 31-40 BASIC UAT: PASS
+
+SUITE PASS: yogaRules31to40.test.js
+
+------------------------------------------------------------------------
+RUN: nadiRules01to10.test.js
+------------------------------------------------------------------------
+
+==============================================
+NADI RULES 01-10 UAT
+==============================================
+
+Rule 1 Positive - Jupiter/Rahu within 5 degrees: PASS
+Rule 1 Negative - Jupiter/Rahu more than 5 degrees: PASS
+Rule 2 Positive - Sun/Rahu within 5 degrees: PASS
+Rule 2 Negative - Sun not within 5 degrees of Rahu/Ketu: PASS
+Rule 3 Positive - Moon/Saturn within 5 degrees: PASS
+Rule 3 Negative - Moon not within 5 degrees of Ketu/Saturn: PASS
+Rule 4 Positive - Mars/Ketu within 5 degrees: PASS
+Rule 4 Negative - Mars not within 5 degrees of Rahu/Ketu: PASS
+Rule 5 Positive - Venus/Ketu within 5 degrees: PASS
+Rule 5 Negative - Venus/Ketu more than 5 degrees: PASS
+Rule 6 Positive - Saturn and Mars same Rasi: PASS
+Rule 6 Positive - Saturn and Mars opposite Rasis: PASS
+Rule 6 Negative - Saturn and Mars neither same nor opposite: PASS
+Rule 7 Positive - Mercury/Rahu within 5 degrees: PASS
+Rule 7 Negative - Mercury not within 5 degrees of Rahu/Saturn: PASS
+Rule 8 Positive - Saturn in 5th house: PASS
+Rule 8 Positive - Ketu in 5th house: PASS
+Rule 8 Negative - Saturn/Ketu not in 5th house: PASS
+Rule 9 Positive - 9th lord in 8th house: PASS
+Rule 9 Positive - 9th lord in 12th house: PASS
+Rule 9 Negative - 9th lord not in 8th/12th: PASS
+Rule 10 Positive - Saturn/Ketu same Rasi: PASS
+Rule 10 Negative - Saturn/Ketu different Rasis: PASS
+
+==============================================
+TOTAL PASS : 23
+TOTAL FAIL : 0
+==============================================
+RULES 1-10 BASIC UAT: PASS
+
+SUITE PASS: nadiRules01to10.test.js
+
+------------------------------------------------------------------------
+RUN: nadiRules11to20.test.js
+------------------------------------------------------------------------
+
+==============================================
+NADI RULES 11-20 UAT
+==============================================
+
+Rule 11 Positive - Venus 5th from Jupiter: PASS
+Rule 11 Positive - Mercury 9th from Jupiter: PASS
+Rule 11 Negative - No defined benefic in 5th/9th from Jupiter: PASS
+Rule 12 Positive - Lagna lord in 12th with Ketu aspect: PASS
+Rule 12 Negative - Lagna lord in 12th without Ketu aspect: PASS
+Rule 13 Positive - 6th lord and 1st lord exchange: PASS
+Rule 13 Negative - No qualifying exchange: PASS
+Rule 14 Positive - Saturn approaches Rahu in same Rasi: PASS
+Rule 14 Negative - Same Rasi but planet degree is greater than Rahu: PASS
+Rule 14 Negative - Lower degree but different Rasi: PASS
+Rule 15 Positive - Jupiter separates from Ketu in same Rasi: PASS
+Rule 15 Negative - Same Rasi but planet degree is below Ketu: PASS
+Rule 16 Positive - Sun hemmed by primary malefics: PASS
+Rule 16 Negative - Malefic present on only one side: PASS
+Rule 17 Positive - Retrograde Saturn in 5th: PASS
+Rule 17 Negative - Non-retrograde planet in 5th: PASS
+Rule 18 Positive - Saturn/Mars opposite Rasis: PASS
+Rule 18 Negative - Saturn/Mars not opposite: PASS
+Rule 19 Positive - Sun/Saturn opposite Rasis: PASS
+Rule 19 Negative - Sun/Saturn not opposite: PASS
+Rule 20 Positive - 5th lord in Ghora Shashtiamsha: PASS
+Rule 20 Negative - 5th lord in Deva Shashtiamsha: PASS
+
+==============================================
+TOTAL PASS : 22
+TOTAL FAIL : 0
+==============================================
+RULES 11-20 BASIC UAT: PASS
+
+SUITE PASS: nadiRules11to20.test.js
+
+------------------------------------------------------------------------
+RUN: nadiRules21to30.test.js
+------------------------------------------------------------------------
+
+==============================================
+NADI RULES 21-30 UAT
+==============================================
+
+Rule 21 Positive - Saturn in 5th Nakshatra from Mudakku: PASS
+Rule 21 Negative - Saturn/Rahu outside Mudakku 1-5-9: PASS
+Rule 22 Positive - 8th lord Mars conjunct Rahu: PASS
+Rule 22 Negative - 8th lord not conjunct Rahu: PASS
+Rule 23 Positive - Mercury 5th from Jupiter: PASS
+Rule 23 Negative - Mercury not 5th/9th from Jupiter: PASS
+Rule 24 Positive - Ketu alone in 12th with Jupiter aspect: PASS
+Rule 24 Negative - Ketu alone in 12th without benefic aspect: PASS
+Rule 25 Positive - 9th lord in 12th with Ketu relation: PASS
+Rule 25 Negative - 9th lord in 12th without Ketu relation: PASS
+Rule 26 Positive - All seven planets within Rahu-Ketu enclosure: PASS
+Rule 26 Negative - One planet outside enclosure: PASS
+Rule 27 Positive - Saturn in Vipat Tara (3rd): PASS
+Rule 27 Negative - Saturn/Rahu outside Tara 3/5/7: PASS
+Rule 28 Positive - Sun Moon Rahu same Rasi: PASS
+Rule 28 Negative - Sun Moon together but node elsewhere: PASS
+Rule 29 Positive - Mercury/Ketu within 3 degrees: PASS
+Rule 29 Negative - Mercury/Ketu more than 3 degrees: PASS
+Rule 30 Positive - Mars and Saturn in 4th house: PASS
+Rule 30 Negative - Only Mars in 4th house: PASS
+
+==============================================
+TOTAL PASS : 20
+TOTAL FAIL : 0
+==============================================
+RULES 21-30 BASIC UAT: PASS
+
+SUITE PASS: nadiRules21to30.test.js
+
+------------------------------------------------------------------------
+RUN: nadiRules31to40.test.js
+------------------------------------------------------------------------
+
+====================================================
+NADI RULES 31-40 UAT
+====================================================
+
+Rule 31 Positive - Lagna lord in 8th with Rahu: PASS
+Rule 31 Positive - Lagna lord in 12th with Rahu: PASS
+Rule 31 Negative - Lagna lord in 8th without Rahu conjunction: PASS
+Rule 32 Positive - Venus in 6th with Rahu aspect: PASS
+Rule 32 Positive - Venus in 6th with Mars aspect: PASS
+Rule 32 Negative - Venus in 6th without Rahu/Mars aspect: PASS
+Rule 33 Positive - Retrograde Jupiter in 5th: PASS
+Rule 33 Positive - Retrograde Jupiter in 9th: PASS
+Rule 33 Negative - Jupiter in 5th but not retrograde: PASS
+Rule 34 Positive - 12th lord Jupiter in Ashwini: PASS
+Rule 34 Positive - 12th lord Jupiter in Magha: PASS
+Rule 34 Negative - 12th lord not in Ketu star: PASS
+Rule 35 Positive - 5th lord Sun Dasha / Rahu Bhukti: PASS
+Rule 35 Positive - 9th lord Jupiter Dasha / Ketu Bhukti: PASS
+Rule 35 Negative - Non-qualifying Dasha lord: PASS
+Rule 36 Positive - Sun/Ketu together in Cancer: PASS
+Rule 36 Negative - Sun/Ketu together but in Leo: PASS
+Rule 37 Positive - Jupiter/Venus in clean trine from 2nd: PASS
+Rule 37 Negative - Same yoga but Saturn aspects conjunction sign: PASS
+Rule 38 Positive - Both retrograde and trinal: PASS
+Rule 38 Positive - Both retrograde and mutual aspect: PASS
+Rule 38 Negative - Saturn not retrograde: PASS
+Rule 39 Positive - Moon/Mars in 5th with Ketu 7th aspect: PASS
+Rule 39 Negative - Moon/Mars in 5th without Ketu aspect: PASS
+Rule 40 Positive - Only Jupiter outside enclosure: PASS
+Rule 40 Negative - Jupiter also inside enclosure: PASS
+
+====================================================
+TOTAL PASS : 26
+TOTAL FAIL : 0
+====================================================
+RULES 31-40 BASIC UAT: PASS
+
+SUITE PASS: nadiRules31to40.test.js
+
+------------------------------------------------------------------------
+RUN: nadiRules41to50.test.js
+------------------------------------------------------------------------
+
+====================================================
+NADI RULES 41-50 UAT
+====================================================
+
+Rule 41 Positive - Mercury/Mars/Rahu in 2nd house: PASS
+Rule 41 Negative - One planet outside 2nd house: PASS
+Rule 42 Positive - Ketu in 5th with Mars 4th aspect: PASS
+Rule 42 Positive - Ketu in 5th with Mars 8th aspect: PASS
+Rule 42 Negative - Ketu in 5th without Mars 4/7/8 aspect: PASS
+Rule 43 Positive - Ketu in 9th with Jupiter 5th aspect: PASS
+Rule 43 Negative - Ketu in 9th without Jupiter aspect: PASS
+Rule 44 Positive - Saturn 3rd aspect to 12th house: PASS
+Rule 44 Positive - Saturn 7th aspect to 12th house: PASS
+Rule 44 Negative - Saturn does not aspect 12th house: PASS
+Rule 45 Positive - Sun/Rahu together in Aries: PASS
+Rule 45 Positive - Mars/Rahu together in Leo: PASS
+Rule 45 Negative - Sun/Rahu together in non-fire sign: PASS
+Rule 46 Positive - Venus/Rahu in 8th house: PASS
+Rule 46 Positive - Venus/Rahu in 12th house: PASS
+Rule 46 Negative - Venus/Rahu together outside 8th/12th: PASS
+Rule 47 Positive - Moon/Saturn in 2nd house: PASS
+Rule 47 Negative - Moon/Saturn together but not in 2nd: PASS
+Rule 48 Positive - Jupiter/Ketu with Saturn 7th aspect: PASS
+Rule 48 Negative - Jupiter/Ketu without Saturn aspect: PASS
+Rule 49 Positive - Mars debilitated in 4th house: PASS
+Rule 49 Positive - Mars in 4th with Ketu conjunction: PASS
+Rule 49 Negative - Mars in 4th neither debilitated nor with Ketu: PASS
+Rule 50 Positive - Sun/Mercury/Rahu in 6th house: PASS
+Rule 50 Negative - One planet outside 6th house: PASS
+
+====================================================
+TOTAL PASS : 25
+TOTAL FAIL : 0
+====================================================
+RULES 41-50 BASIC UAT: PASS
+
+SUITE PASS: nadiRules41to50.test.js
+
+------------------------------------------------------------------------
+RUN: nadiRules51to60.test.js
+------------------------------------------------------------------------
+
+====================================================
+NADI RULES 51-60 UAT
+====================================================
+
+Rule 51 Positive - Mars/Venus/Ketu in 7th house: PASS
+Rule 51 Positive - Mars/Venus/Ketu in 8th house: PASS
+Rule 51 Negative - Same conjunction outside 7th/8th: PASS
+Rule 52 Positive - 5th lord Sun in 6th with Rahu: PASS
+Rule 52 Negative - 5th lord in 6th without Rahu: PASS
+Rule 53 Positive - Saturn in 5th and Ketu in 9th, both alone: PASS
+Rule 53 Negative - Saturn not alone: PASS
+Rule 53 Negative - Ketu outside 1/5/9: PASS
+Rule 54 Positive - Lagna lord Mars conjunct 5th lord Sun: PASS
+Rule 54 Positive - 5th lord Sun aspects 9th lord Jupiter: PASS
+Rule 54 Negative - No relation among 1/5/9 lords: PASS
+Rule 55 Positive - 8th lord Mars/Moon/Ketu in 8th: PASS
+Rule 55 Negative - Conjunction outside 8th/12th: PASS
+Rule 56 Positive - Saturn/Sun/Rahu in 6th: PASS
+Rule 56 Positive - Saturn/Sun/Rahu in 8th: PASS
+Rule 56 Negative - One planet outside conjunction: PASS
+Rule 57 Positive - Mars exactly 180 degrees opposite Saturn: PASS
+Rule 57 Negative - Mars is 179.9 degrees from Saturn: PASS
+Rule 58 Positive - Sun/Mars/Ketu in 5th: PASS
+Rule 58 Negative - Conjunction outside 5th/9th: PASS
+Rule 59 Positive - 9th lord Jupiter exchanges with 6th lord Mercury: PASS
+Rule 59 Negative - No cross-group exchange: PASS
+Rule 60 Positive - Mars/Mercury/Ketu in Lagna: PASS
+Rule 60 Positive - Mars/Mercury/Ketu in 8th: PASS
+Rule 60 Negative - Same conjunction outside Lagna/8th: PASS
+
+====================================================
+TOTAL PASS : 25
+TOTAL FAIL : 0
+====================================================
+RULES 51-60 BASIC UAT: PASS
+
+SUITE PASS: nadiRules51to60.test.js
+
+------------------------------------------------------------------------
+RUN: d1D60Foundation.test.js
+------------------------------------------------------------------------
+PASS: D60 table has exactly 60 rows
+PASS: 0°00-0°30 maps to D60 division 1 Ghora
+PASS: 29°30-30°00 maps to division 60 Chandrarekha
+PASS: Only nine classical grahas evaluated; Mandi excluded
+PASS: Phase explicitly limits current implementation to D1 D9 D60
+PASS: D1 debilitation is detected
+PASS: D1 houses 6/8/12 condition is supported
+PASS: Malefic conjunction/aspect conditions are enabled
+PASS: Combustion is included for D1
+PASS: D60 inauspicious nature marks D60 affected
+PASS: Badly affected requires D1 + D9 + D60 together
+PASS: Badly affected planet has no remedy allowed
+PASS: Dasha affected status is returned
+PASS: Bhukti affected status is returned
+PASS: D60 source metadata retained
+
+TOTAL PASS : 15
+TOTAL FAIL : 0
+
+D1-D60 FOUNDATION UAT: PASS
+
+SUITE PASS: d1D60Foundation.test.js
+
+------------------------------------------------------------------------
+RUN: d1D60Extended.test.js
+------------------------------------------------------------------------
+PASS: Extended D1-D60 phase is implemented
+PASS: Existing frozen foundation metadata is preserved
+PASS: Exactly 60 divisional charts are returned
+PASS: Each divisional chart contains Lagna and nine classical grahas
+PASS: D1 transformed longitude preserves natal longitude
+PASS: D9 transformed sign agrees with frozen Navamsa for sample Moon
+PASS: Nakshatra and Pada are returned for every D1-D60 Lagna
+PASS: Nakshatra frequency counts exactly 60 charts
+PASS: Top two Nakshatras are returned
+PASS: Bottom two are least-frequent Nakshatras that actually occurred
+PASS: Frequency entries retain the D-chart occurrence list
+PASS: Every planet now has all 60 Varga results
+PASS: Affected count matches affected chart list
+PASS: All Varga results retain Rasi Nakshatra Pada and reasons
+PASS: Badly Affected remains controlled only by frozen D1+D9+D60 rule
+PASS: Badly Affected still disables remedy
+PASS: Longitude helper gives valid Nakshatra/Pada details
+
+TOTAL PASS : 17
+TOTAL FAIL : 0
+
+D1-D60 EXTENDED UAT: PASS
+
+SUITE PASS: d1D60Extended.test.js
+
+------------------------------------------------------------------------
+RUN: moleScarRuleMaster.test.js
+------------------------------------------------------------------------
+PASS: Client supplied rule count is exactly 78
+PASS: Rule 1001 is preserved
+PASS: Rule 1051 conjunction is classified for automatic chart evaluation
+PASS: Navamsa rules 1094 and 1095 are present
+PASS: Rules 1096-1099 are observation-dependent
+PASS: Rule 1100 is reference-only
+PASS: Missing client rules 1029-1050 are explicitly declared, not invented
+PASS: Rule master passes structural validation
+
+TOTAL PASS : 8
+TOTAL FAIL : 0
+
+MOLE/SCAR RULE MASTER UAT: PASS
+
+SUITE PASS: moleScarRuleMaster.test.js
+
+------------------------------------------------------------------------
+RUN: moleScarAnalysis.test.js
+------------------------------------------------------------------------
+PASS: All 73 automatic client rules are supported by Step 2 evaluator
+PASS: House calculation is relative to Lagna
+PASS: Rule 1001 matches Rahu in Lagna and Rule 1004 matches Mars in 2nd house
+PASS: Slash client condition is treated as OR for Rule 1011
+PASS: Plus client condition requires both planets in same house for Rule 1051
+PASS: Rule 1067 requires Rahu in 6th plus Ketu aspect to 6th
+PASS: House-lord rules use Lagna sign lordships
+PASS: Planet aspect rules return the exact houses as evidence
+PASS: Navamsa Rules 1094 and 1095 return Rahu/Ketu Navamsa signs
+PASS: Observation-dependent Rules 1096-1099 are never auto-matched
+PASS: Rule 1100 remains reference-only and missing 1029-1050 remain absent
+PASS: Step 2 analysis is independent and does not mutate input chart objects
+
+TOTAL PASS : 12
+TOTAL FAIL : 0
+
+MOLE/SCAR CALCULATION ENGINE UAT: PASS
+
+SUITE PASS: moleScarAnalysis.test.js
+
+------------------------------------------------------------------------
+RUN: moleScarApiIntegration.test.js
+------------------------------------------------------------------------
+PASS: HTTP /api/horoscope/generate returns 200
+PASS: Existing API success response remains true
+PASS: Existing core horoscope fields are still present
+PASS: moleScarAnalysis is returned as a top-level API block
+PASS: moleScarAnalysis returns matched automatic rules
+PASS: observation-dependent Rules 1096-1099 are preserved but not auto-matched
+PASS: Rule 1100 remains reference-only
+PASS: Missing client Rule Nos 1029-1050 remain explicitly declared
+PASS: Summary is internally consistent
+
+Mole/Scar matched Rule Nos: 1009, 1022, 1080, 1091, 1092, 1093, 1094, 1095
+Matched automatic rules: 8
+Unsupported automatic rules: 0
+
+TOTAL PASS : 9
+TOTAL FAIL : 0
+
+MOLE/SCAR API INTEGRATION UAT: PASS
+
+SUITE PASS: moleScarApiIntegration.test.js
+
+------------------------------------------------------------------------
+RUN: ashtakavarga.test.js
+------------------------------------------------------------------------
+PASS: Relative-house calculation uses inclusive sign counting
+PASS: Client Ashtakavarga reference matrix matches all 12 rows exactly
+PASS: Classical Bhinnashtakavarga planet totals remain invariant
+PASS: Engine is dynamic: rotating every natal position rotates the rows
+PASS: Rahu, Ketu and Mandi are ignored by the calculation
+PASS: Missing required planet is rejected instead of inventing data
+
+Ashtakavarga Step 5B: 6 PASS / 0 FAIL
+
+SUITE PASS: ashtakavarga.test.js
+
+------------------------------------------------------------------------
+RUN: ashtakavargaApiIntegration.test.js
+------------------------------------------------------------------------
+PASS: HTTP /api/horoscope/generate returns 200
+PASS: Existing API success response remains true
+PASS: Existing frozen horoscope blocks are still present
+PASS: ashtakavarga is returned as a top-level API block
+PASS: Client Ashtakavarga matrix matches all 12 rows exactly
+PASS: Client planet totals match exactly
+PASS: Client grand total is 337
+PASS: Ashtakavarga uses seven classical planets plus Lagna contributors
+
+Ashtakavarga contributor Rasis: {
+  lagna: 1,
+  sun: 12,
+  moon: 4,
+  mars: 9,
+  mercury: 1,
+  jupiter: 8,
+  venus: 11,
+  saturn: 1
+}
+
+TOTAL PASS : 8
+TOTAL FAIL : 0
+
+ASHTAKAVARGA API INTEGRATION UAT: PASS
+
+SUITE PASS: ashtakavargaApiIntegration.test.js
+
+========================================================================
+API STEP 5D - FINAL REGRESSION SUMMARY
+========================================================================
+TOTAL SUITES : 20
+SUITES PASS  : 20
+SUITES FAIL  : 0
+
+API STEP 5D FULL REGRESSION/UAT: PASS
+All completed/frozen deterministic UAT suites passed.
+
+birthCalculationDetails.test.js
+birthCalculationDetails.test.js: PASS
+
+birthCalculationDetailsApiIntegration.test.js
+PASS: Reference request returns 200
+PASS: New birthCalculationDetails block is present
+PASS: Thirukanitha sunrise/sunset match client reference minute values
+PASS: Udayadhi Nazhigai matches client reference
+PASS: Aadi-Antham Nakshatra duration is returned
+PASS: Planetary table is returned in client display order
+PASS: Reference planetary longitudes are exposed as D:M:S
+PASS: Nakshatra lord and relationship/status are exposed
+PASS: Current Dasha/Bhukti end dates are exposed
+PASS: Existing frozen blocks remain present
+
+TOTAL PASS : 10
+TOTAL FAIL : 0
+
+BIRTH CALCULATION DETAILS API UAT: PASS
+
+renderCoordinatesBypass.test.js
+PASS: Explicit coordinates bypass external geocoder
+PASS: API success remains true
+PASS: Response returns supplied latitude/longitude
+PASS: Ashtakavarga remains correct
+PASS: Mole/Scar analysis remains present
+PASS: Latitude without longitude is rejected
+
+TOTAL PASS : 6
+TOTAL FAIL : 0
+
+RENDER COORDINATE BYPASS UAT: PASS
