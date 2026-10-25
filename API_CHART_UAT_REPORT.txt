@@ -1,0 +1,51 @@
+﻿**********************
+Windows PowerShell transcript start
+Start time: 20261020215845
+Username: LAPTOP-JL8606E8\saravanan
+RunAs User: LAPTOP-JL8606E8\saravanan
+Configuration Name: 
+Machine: LAPTOP-JL8606E8 (Microsoft Windows NT 10.0.26200.0)
+Host Application: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -ExecutionPolicy Bypass -File .\Run-ChartCalculations-UAT.ps1
+Process ID: 20428
+PSVersion: 5.1.26100.9711
+PSEdition: Desktop
+PSCompatibleVersions: 1.0, 2.0, 3.0, 4.0, 5.0, 5.1.26100.9711
+BuildVersion: 10.0.26100.9711
+CLRVersion: 4.0.30319.42000
+WSManStackVersion: 3.0
+PSRemotingProtocolVersion: 2.3
+SerializationVersion: 1.1.0.1
+**********************
+Transcript started, output file is D:\horoscope_api\API_CHART_UAT_REPORT.txt
+Running chartPlanetaryTables.test.js
+✔ known longitude boundaries, status and input immutability (1.5207ms)
+✔ Tamil and English preserve numeric values and excluded bodies have no status (1.0066ms)
+ℹ tests 2
+ℹ suites 0
+ℹ pass 2
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 9.4286
+Running chartPlanetaryTablesApiIntegration.test.js
+PASS ta: all four new tables, D9 reference equivalence, no fabricated Lagna degree
+PASS en: HTTP response, D9 positions, D60, Karakamsa, Thithi Soonya, existing values
+PASS en: all four new tables, D9 reference equivalence, no fabricated Lagna degree
+Running clientChartCalculations.test.js
+
+Running clientChartCalculationsApiIntegration.test.js
+
+Running fullRegressionUatStep5D.test.js
+
+Running birthCalculationDetails.test.js
+
+Running birthCalculationDetailsApiIntegration.test.js
+
+Running renderCoordinatesBypass.test.js
+
+ALL API CHART UAT SUITES PASSED
+**********************
+Windows PowerShell transcript end
+End time: 20261020215848
+**********************

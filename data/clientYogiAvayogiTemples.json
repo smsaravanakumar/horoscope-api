@@ -1,0 +1,601 @@
+{
+  "source": "nakshatra_yogi_avayogi_temples.pdf",
+  "status": "transcribed_from_client_pdf_tamil_original",
+  "expectedNakshatras": 27,
+  "entries": [
+    {
+      "nakshatraNumber": 1,
+      "verified": true,
+      "yogi": {
+        "ta": {
+          "temple": "திருப்பாம்புரம் சேஷபுரீஸ்வரர்",
+          "town": "திருப்பாம்புரம் (குடவாசல்)",
+          "district": "திருவாரூர்"
+        }
+      },
+      "avayogi": {
+        "ta": {
+          "temple": "சித்திரகுப்தன் கோவில்",
+          "town": "காஞ்சிபுரம் நகர்",
+          "district": "காஞ்சிபுரம்"
+        }
+      },
+      "sourcePages": {
+        "yogi": 1,
+        "avayogi": 2
+      }
+    },
+    {
+      "nakshatraNumber": 2,
+      "verified": true,
+      "yogi": {
+        "ta": {
+          "temple": "கோலவில்லி ராமர் (வள்ளல் ராமர்)",
+          "town": "திருவெள்ளியங்குடி (சோழபுரம் வழி)",
+          "district": "தஞ்சாவூர்"
+        }
+      },
+      "avayogi": {
+        "ta": {
+          "temple": "அக்னீஸ்வரர் (சுக்கிரன் ஸ்தலம்)",
+          "town": "கஞ்சனூர் (ஆடுதுறை வழி)",
+          "district": "தஞ்சாவூர்"
+        }
+      },
+      "sourcePages": {
+        "yogi": 1,
+        "avayogi": 2
+      }
+    },
+    {
+      "nakshatraNumber": 3,
+      "verified": true,
+      "yogi": {
+        "ta": {
+          "temple": "கள்ளபிரான் பெருமாள் (சூரிய தலம்)",
+          "town": "ஸ்ரீவைகுண்டம்",
+          "district": "தூத்துக்குடி"
+        }
+      },
+      "avayogi": {
+        "ta": {
+          "temple": "ஜயராம்பர் சிவன் (சூரிய தோஷ நிவர்த்தி)",
+          "town": "திருவையாறு",
+          "district": "தஞ்சாவூர்"
+        }
+      },
+      "sourcePages": {
+        "yogi": 1,
+        "avayogi": 2
+      }
+    },
+    {
+      "nakshatraNumber": 4,
+      "verified": true,
+      "yogi": {
+        "ta": {
+          "temple": "சந்திரமௌலீஸ்வரர் கோவில்",
+          "town": "திருவக்கரை (வானூர் வட்டம்)",
+          "district": "விழுப்புரம்"
+        }
+      },
+      "avayogi": {
+        "ta": {
+          "temple": "சந்திர மௌலீஸ்வரர் கோவில்",
+          "town": "மொரட்டூர் (காட்டாடி / வேலூர்)",
+          "district": "வேலூர்"
+        }
+      },
+      "sourcePages": {
+        "yogi": 1,
+        "avayogi": 2
+      }
+    },
+    {
+      "nakshatraNumber": 5,
+      "verified": true,
+      "yogi": {
+        "ta": {
+          "temple": "பிரசன்ன வெங்கடேச பெருமாள்",
+          "town": "நாச்சியார்கோவில்",
+          "district": "தஞ்சாவூர்"
+        }
+      },
+      "avayogi": {
+        "ta": {
+          "temple": "சுப்பிரமணிய சுவாமி (முருகன்)",
+          "town": "குமார வயலூர் (திருச்சி)",
+          "district": "திருச்சிராப்பள்ளி"
+        }
+      },
+      "sourcePages": {
+        "yogi": 1,
+        "avayogi": 2
+      }
+    },
+    {
+      "nakshatraNumber": 6,
+      "verified": true,
+      "yogi": {
+        "ta": {
+          "temple": "துர்க்கையம்மன் கோவில்",
+          "town": "பட்டீஸ்வரம் (கும்பகோணம்)",
+          "district": "தஞ்சாவூர்"
+        }
+      },
+      "avayogi": {
+        "ta": {
+          "temple": "அபிராமேஸ்வரர் + முத்தாம்பிகை",
+          "town": "திருவாமாத்தூர்",
+          "district": "விழுப்புரம்"
+        }
+      },
+      "sourcePages": {
+        "yogi": 1,
+        "avayogi": 2
+      }
+    },
+    {
+      "nakshatraNumber": 7,
+      "verified": true,
+      "yogi": {
+        "ta": {
+          "temple": "தட்சிணாமூர்த்தி (திருவலிதாயம்)",
+          "town": "பாடி (சென்னை)",
+          "district": "சென்னை"
+        }
+      },
+      "avayogi": {
+        "ta": {
+          "temple": "திருமேனியழகர் கோவில்",
+          "town": "மகேந்திரப்பள்ளி (கொள்ளிடம்)",
+          "district": "மயிலாடுதுறை"
+        }
+      },
+      "sourcePages": {
+        "yogi": 1,
+        "avayogi": 2
+      }
+    },
+    {
+      "nakshatraNumber": 8,
+      "verified": true,
+      "yogi": {
+        "ta": {
+          "temple": "வசிஷ்டேஸ்வரர் (தென்குடித்திட்டை)",
+          "town": "திட்டை (தஞ்சை)",
+          "district": "தஞ்சாவூர்"
+        }
+      },
+      "avayogi": {
+        "ta": {
+          "temple": "நர்த்தனவல்லபேஸ்வரர் கோவில்",
+          "town": "திருக்குடவாயிலாதார் (குடவாசல்)",
+          "district": "திருவாரூர்"
+        }
+      },
+      "sourcePages": {
+        "yogi": 1,
+        "avayogi": 2
+      }
+    },
+    {
+      "nakshatraNumber": 9,
+      "verified": true,
+      "yogi": {
+        "ta": {
+          "temple": "பள்ளிகொண்ட பெருமாள் (பள்ளிப்படுக்கை)",
+          "town": "திருநாங்கூர் (சீர்காழி)",
+          "district": "மயிலாடுதுறை"
+        }
+      },
+      "avayogi": {
+        "ta": {
+          "temple": "கஜேந்திர வரதராஜ பெருமாள்",
+          "town": "கபிஸ்தலம் (பாபநாசம்)",
+          "district": "தஞ்சாவூர்"
+        }
+      },
+      "sourcePages": {
+        "yogi": 1,
+        "avayogi": 2
+      }
+    },
+    {
+      "nakshatraNumber": 10,
+      "verified": true,
+      "yogi": {
+        "ta": {
+          "temple": "ஆதி கும்பேஸ்வரர் திருக்கோவில்",
+          "town": "கும்பகோணம்",
+          "district": "தஞ்சாவூர்"
+        }
+      },
+      "avayogi": {
+        "ta": {
+          "temple": "பஞ்சவர்ணேஸ்வரர் கோவில்",
+          "town": "உறையூர்",
+          "district": "திருச்சிராப்பள்ளி"
+        }
+      },
+      "sourcePages": {
+        "yogi": 1,
+        "avayogi": 2
+      }
+    },
+    {
+      "nakshatraNumber": 11,
+      "verified": true,
+      "yogi": {
+        "ta": {
+          "temple": "ஸ்ரீரங்கநாதர் திருக்கோவில்",
+          "town": "ஸ்ரீரங்கம்",
+          "district": "திருச்சிராப்பள்ளி"
+        }
+      },
+      "avayogi": {
+        "ta": {
+          "temple": "வைகுண்ட நாராயணப் பெருமாள்",
+          "town": "மணக்கால் அய்யம்பேட்டை",
+          "district": "திருவாரூர்"
+        }
+      },
+      "sourcePages": {
+        "yogi": 1,
+        "avayogi": 2
+      }
+    },
+    {
+      "nakshatraNumber": 12,
+      "verified": true,
+      "yogi": {
+        "ta": {
+          "temple": "சூரிய பகவான் கோவில்",
+          "town": "சூரியனார்கோவில் (ஆடுதுறை)",
+          "district": "தஞ்சாவூர்"
+        }
+      },
+      "avayogi": {
+        "ta": {
+          "temple": "புஷ்பரதேஸ்வரர் சிவன் (ஞாயிறு கோவில்)",
+          "town": "ஞாயிறு கிராமம் (பொன்னேரி)",
+          "district": "திருவள்ளூர்"
+        }
+      },
+      "sourcePages": {
+        "yogi": 1,
+        "avayogi": 2
+      }
+    },
+    {
+      "nakshatraNumber": 13,
+      "verified": true,
+      "yogi": {
+        "ta": {
+          "temple": "உப்பிலியப்பன் திருக்கோவில்",
+          "town": "திருநாகேஸ்வரம்",
+          "district": "தஞ்சாவூர்"
+        }
+      },
+      "avayogi": {
+        "ta": {
+          "temple": "நந்திபுர விண்ணகரம் நாதன் கோவில்",
+          "town": "கொரநாட்டுக் கருப்பூர்",
+          "district": "தஞ்சாவூர்"
+        }
+      },
+      "sourcePages": {
+        "yogi": 1,
+        "avayogi": 2
+      }
+    },
+    {
+      "nakshatraNumber": 14,
+      "verified": true,
+      "yogi": {
+        "ta": {
+          "temple": "வைத்தீஸ்வரன் கோவில் (முத்துக்குமாரர்)",
+          "town": "வைத்தீஸ்வரன் கோவில்",
+          "district": "மயிலாடுதுறை"
+        }
+      },
+      "avayogi": {
+        "ta": {
+          "temple": "வைத்தமாநிதி பெருமாள் (செவ்வாய் தலம்)",
+          "town": "திருக்கோளூர் (ஆழ்வார்திருநகரி)",
+          "district": "தூத்துக்குடி"
+        }
+      },
+      "sourcePages": {
+        "yogi": 1,
+        "avayogi": 2
+      }
+    },
+    {
+      "nakshatraNumber": 15,
+      "verified": true,
+      "yogi": {
+        "ta": {
+          "temple": "நாகநாதசுவாமி கோவில் (ராகு தலம்)",
+          "town": "திருநாகேஸ்வரம்",
+          "district": "தஞ்சாவூர்"
+        }
+      },
+      "avayogi": {
+        "ta": {
+          "temple": "நாகராஜா திருக்கோவில்",
+          "town": "நாகர்கோவில்",
+          "district": "கன்னியாகுமரி"
+        }
+      },
+      "sourcePages": {
+        "yogi": 1,
+        "avayogi": 3
+      }
+    },
+    {
+      "nakshatraNumber": 16,
+      "verified": true,
+      "yogi": {
+        "ta": {
+          "temple": "அவினாசி லிங்கேஸ்வரர் கோவில்",
+          "town": "அவினாசி",
+          "district": "திருப்பூர்"
+        }
+      },
+      "avayogi": {
+        "ta": {
+          "temple": "ஜலநாதீஸ்வரர் தட்சிணாமூர்த்தி",
+          "town": "தக்கோலம் (அரக்கோணம்)",
+          "district": "ராணிப்பேட்டை"
+        }
+      },
+      "sourcePages": {
+        "yogi": 1,
+        "avayogi": 3
+      }
+    },
+    {
+      "nakshatraNumber": 17,
+      "verified": true,
+      "yogi": {
+        "ta": {
+          "temple": "அக்னீஸ்வரர் + பொங்கு சனி பகவான்",
+          "town": "திருக்கொள்ளிக்காடு",
+          "district": "திருவாரூர்"
+        }
+      },
+      "avayogi": {
+        "ta": {
+          "temple": "திரிபுராந்தகேஸ்வரர் (திருமூலட்டானேஸ்வரர்)",
+          "town": "தெள்ளாறு (வந்தவாசி)",
+          "district": "திருவண்ணாமலை"
+        }
+      },
+      "sourcePages": {
+        "yogi": 1,
+        "avayogi": 3
+      }
+    },
+    {
+      "nakshatraNumber": 18,
+      "verified": true,
+      "yogi": {
+        "ta": {
+          "temple": "சத்தியநாதேஸ்வரர் கோவில்",
+          "town": "திருக்காலிமேடு",
+          "district": "காஞ்சிபுரம்"
+        }
+      },
+      "avayogi": {
+        "ta": {
+          "temple": "காய்சினவேந்தன் பெருமாள் (புதன் தலம்)",
+          "town": "திருப்புளியங்குடி (ஸ்ரீவைகுண்டம்)",
+          "district": "தூத்துக்குடி"
+        }
+      },
+      "sourcePages": {
+        "yogi": 1,
+        "avayogi": 3
+      }
+    },
+    {
+      "nakshatraNumber": 19,
+      "verified": true,
+      "yogi": {
+        "ta": {
+          "temple": "செந்தூர விநாயகர் கோவில்",
+          "town": "திருவண்ணாமலை",
+          "district": "திருவண்ணாமலை"
+        }
+      },
+      "avayogi": {
+        "ta": {
+          "temple": "ஜெகத்ரட்சக பெருமாள் கோவில்",
+          "town": "திருக்கூடலூர் (அய்யம்பேட்டை)",
+          "district": "தஞ்சாவூர்"
+        }
+      },
+      "sourcePages": {
+        "yogi": 1,
+        "avayogi": 3
+      }
+    },
+    {
+      "nakshatraNumber": 20,
+      "verified": true,
+      "yogi": {
+        "ta": {
+          "temple": "வெள்ளிமலைநாதர் (கருநெல்லிநாதர்)",
+          "town": "திருத்தங்கல் (சிவகாசி)",
+          "district": "விருதுநகர்"
+        }
+      },
+      "avayogi": {
+        "ta": {
+          "temple": "தோத்தாத்ரி நாதப்பெருமாள் கோவில்",
+          "town": "திருப்புவனை",
+          "district": "புதுச்சேரி"
+        }
+      },
+      "sourcePages": {
+        "yogi": 2,
+        "avayogi": 3
+      }
+    },
+    {
+      "nakshatraNumber": 21,
+      "verified": true,
+      "yogi": {
+        "ta": {
+          "temple": "சாயாவனேஸ்வரர் திருக்கோவில்",
+          "town": "சாயாவனம் (பூம்புகார்)",
+          "district": "மயிலாடுதுறை"
+        }
+      },
+      "avayogi": {
+        "ta": {
+          "temple": "பாபநாசநாதர் சிவன் கோவில்",
+          "town": "பாபநாசம் (விக்கிரமசிங்கபுரம்)",
+          "district": "திருநெல்வேலி"
+        }
+      },
+      "sourcePages": {
+        "yogi": 2,
+        "avayogi": 3
+      }
+    },
+    {
+      "nakshatraNumber": 22,
+      "verified": true,
+      "yogi": {
+        "ta": {
+          "temple": "சுப்பிரமணிய சுவாமி / சோமநாதேஸ்வரர்",
+          "town": "திருச்செந்தூர் / ஆத்தூர்",
+          "district": "தூத்துக்குடி"
+        }
+      },
+      "avayogi": {
+        "ta": {
+          "temple": "அம்மநாதசுவாமி கைலாசநாதர்",
+          "town": "சேரன்மாதேவி",
+          "district": "திருநெல்வேலி"
+        }
+      },
+      "sourcePages": {
+        "yogi": 2,
+        "avayogi": 3
+      }
+    },
+    {
+      "nakshatraNumber": 23,
+      "verified": true,
+      "yogi": {
+        "ta": {
+          "temple": "பிரம்மபுரீஸ்வரர் / சுப்பிரமணியர்",
+          "town": "எண்கண் (குத்தத்தூர் வழி)",
+          "district": "திருவாரூர்"
+        }
+      },
+      "avayogi": {
+        "ta": {
+          "temple": "பிரசன்ன வெங்கடேச பெருமாள்",
+          "town": "குணசீலம் (முசிறி)",
+          "district": "திருச்சிராப்பள்ளி"
+        }
+      },
+      "sourcePages": {
+        "yogi": 2,
+        "avayogi": 3
+      }
+    },
+    {
+      "nakshatraNumber": 24,
+      "verified": true,
+      "yogi": {
+        "ta": {
+          "temple": "அர்த்தநாரீஸ்வரர் (நாகராஜ தலம்)",
+          "town": "திருச்செங்கோடு",
+          "district": "நாமக்கல்"
+        }
+      },
+      "avayogi": {
+        "ta": {
+          "temple": "சேஷீஸ்வரர் (அழகேஸ்வரர்)",
+          "town": "சேசங்கனூர் (கண்டமங்கலம்)",
+          "district": "விழுப்புரம்"
+        }
+      },
+      "sourcePages": {
+        "yogi": 2,
+        "avayogi": 3
+      }
+    },
+    {
+      "nakshatraNumber": 25,
+      "verified": true,
+      "yogi": {
+        "ta": {
+          "temple": "குலசேகரநாதர் தட்சிணாமூர்த்தி",
+          "town": "செங்கோட்டை",
+          "district": "தென்காசி"
+        }
+      },
+      "avayogi": {
+        "ta": {
+          "temple": "மங்களபுரீஸ்வரர் (மதுவனேஸ்வரர்)",
+          "town": "நன்னிலம்",
+          "district": "திருவாரூர்"
+        }
+      },
+      "sourcePages": {
+        "yogi": 2,
+        "avayogi": 3
+      }
+    },
+    {
+      "nakshatraNumber": 26,
+      "verified": true,
+      "yogi": {
+        "ta": {
+          "temple": "அகத்தீஸ்வரர் (வடதிருநள்ளாறு சனி)",
+          "town": "பொழிச்சலூர் (பல்லாவரம்)",
+          "district": "செங்கல்பட்டு"
+        }
+      },
+      "avayogi": {
+        "ta": {
+          "temple": "சுயம்பு சனிபகவான் திருக்கோவில்",
+          "town": "குச்சனூர் (உத்தமபாளையம்)",
+          "district": "தேனி"
+        }
+      },
+      "sourcePages": {
+        "yogi": 2,
+        "avayogi": 3
+      }
+    },
+    {
+      "nakshatraNumber": 27,
+      "verified": true,
+      "yogi": {
+        "ta": {
+          "temple": "மீனாட்சி சுந்தரேஸ்வரர் (புதன் தலம்)",
+          "town": "மதுரை மாநகர்",
+          "district": "மதுரை"
+        }
+      },
+      "avayogi": {
+        "ta": {
+          "temple": "கலியுக வரதராஜ பெருமாள்",
+          "town": "கல்லங்குறிச்சி / அரியலூர்",
+          "district": "அரியலூர்"
+        }
+      },
+      "sourcePages": {
+        "yogi": 2,
+        "avayogi": 3
+      }
+    }
+  ]
+}

@@ -20,6 +20,7 @@ const {
 
 const { calculateDasha } = require("../services/dashaService");
 const { calculateHoroscopeDetails } = require("../services/horoscopeDetailsService");
+const { resolveTempleReferences } = require("../services/clientTempleReferenceService");
 const { buildAdditionalAstroAnalysis } = require("../services/additionalAstroAnalysisService");
 const { buildClientAstroRules } = require("../services/clientAstroRuleService");
 const { buildPitruDosha } = require("../services/pitruDoshaService");
@@ -420,6 +421,10 @@ router.post("/generate", async (req, res) => {
       language,
     });
 
+    // Additive client reference guide: selected temples and 12-house reference options.
+    // Never infer the personalized Mudakku house; PDFs define reference tables only.
+    const clientTempleReferences = resolveTempleReferences({ horoscopeDetails, language });
+
     const clientChartCalculations = buildClientChartCalculations({
       lagna, planets, horoscopeDetails, language,
     });
@@ -427,6 +432,7 @@ router.post("/generate", async (req, res) => {
     return res.json({
       success: true,
       clientChartCalculations,
+      clientTempleReferences,
       input: {
         name: name || "",
         gender: gender || "",

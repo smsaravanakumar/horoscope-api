@@ -1,0 +1,1 @@
+Integrated backend tests: 45 total; 44 PASS, 1 FAIL due to offline external geocoding in pre-existing fullApiRegression.test.js. 6/6 new reference tests PASS. Original astrology files unchanged. Production publication requires client PDF transcription proofreading, acceptance of Mudakku 12-house selection rule, and local Windows full suite pass.

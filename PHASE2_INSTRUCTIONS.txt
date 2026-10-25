@@ -1,0 +1,48 @@
+PANJAPAKSHI HOROSCOPE API - CLIENT REFERENCE / THIRUKANITHA PHASE 2
+===================================================================
+Base used: horoscope_api(20261013-171747).zip
+
+ADDITIVE CHANGES ONLY
+---------------------
+1. New top-level API block: birthCalculationDetails
+2. Thirukanitha-style astronomical sunrise/sunset using the existing Astronomy Engine.
+3. Udayadhi Nazhigai calculated from the governing sunrise at traditional minute precision.
+4. Aadi-Antham Parama Nazhigai calculated from the birth Nakshatra start/end boundaries.
+5. Existing API Lahiri ayanamsa formatted as D:M:S. Existing ayanamsa calculation is NOT changed.
+6. Client-style planetary table:
+   - Lagna + planets
+   - absolute longitude D:M:S
+   - Nakshatra
+   - Pada
+   - Nakshatra lord
+   - Rasi
+   - classical relationship/status: Own/Exalted/Debilitated/Friendly/Neutral/Enemy
+   - Rahu/Ketu/Mandi relationship is deliberately returned as --- instead of inventing a disputed convention.
+7. Additive Dasha/Bhukti timeline with start/end date metadata.
+8. No Bhavam calculation added.
+9. Existing horoscopeDetails, Rasi, Navamsa, D1-D60, Gocharam, Ashtakavarga, Mole/Scar and client rules are unchanged.
+
+CLIENT REFERENCE CHECK (02-07-1969 04:05 PM; 11:39 N / 78:10 E)
+-------------------------------------------------------------------
+Sunrise: 05:57
+Sunset: 18:45
+Udayadhi Nazhigai: 25.20
+Aadi-Antham: about 54.49 with current astronomy engine (client image shows 54.45)
+Reference planetary D:M:S values match to within a few arcseconds.
+
+NOTE ON AADI-ANTHAM
+------------------
+The small difference between 54.49 and the old client printout 54.45 is expected from ephemeris/rounding convention differences. The app uses the current frozen astronomy engine and Lahiri basis rather than hard-coding the sample value.
+
+TESTS
+-----
+From the API project root:
+  node tests/birthCalculationDetails.test.js
+  node tests/birthCalculationDetailsApiIntegration.test.js
+  node tests/renderCoordinatesBypass.test.js
+
+All executable local suites passed in the build environment. The old fullApiRegression.test.js was not executed successfully because it intentionally geocodes place-only test requests through public Nominatim, and the build sandbox has no external DNS/network access. This is an environment limitation, not a code failure.
+
+DEPLOYMENT
+----------
+After local tests pass, commit/push the active OUTER horoscope_api project to the existing GitHub/Render deployment as usual. Do not copy changes into the obsolete nested horoscope_api/ folder.
