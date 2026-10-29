@@ -423,7 +423,13 @@ router.post("/generate", async (req, res) => {
 
     // Additive client reference guide: selected temples and 12-house reference options.
     // Never infer the personalized Mudakku house; PDFs define reference tables only.
-    const clientTempleReferences = resolveTempleReferences({ horoscopeDetails, language });
+    // Select the Mudakku reference by its calculated Rasi's inclusive house from natal Lagna.
+    // This uses existing positions; it does not recalculate or modify astrology values.
+    const clientTempleReferences = resolveTempleReferences({
+      horoscopeDetails,
+      lagnaRasiNumber: lagna?.rasiNo,
+      language,
+    });
 
     const clientChartCalculations = buildClientChartCalculations({
       lagna, planets, horoscopeDetails, language,

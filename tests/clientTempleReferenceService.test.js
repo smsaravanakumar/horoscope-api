@@ -50,3 +50,28 @@ test('All twelve rasi options have twelve distinct houses',()=>{
   assert.deepEqual(result.mudakkuHouseOptions.map(x=>x.houseNumber),Array.from({length:12},(_,i)=>i+1));
  }
 });
+
+// Integrated selection from *existing* natal Lagna and the already calculated Mudakku Rasi.
+test('All 144 Lagna/Mudakku combinations select the corresponding house without changing inputs',()=>{
+ const {mudakkuHouseFromLagna}=require('../services/clientTempleReferenceService');
+ for(let lagna=1;lagna<=12;lagna++) for(let rasi=1;rasi<=12;rasi++) {
+   const house=((rasi-lagna+12)%12)+1;
+   const details={mudakku:{rasiNumber:rasi}};
+   const original=JSON.stringify(details);
+   const result=resolveTempleReferences({horoscopeDetails:details,lagnaRasiNumber:lagna,language:'ta'});
+   assert.equal(mudakkuHouseFromLagna(lagna,rasi),house);
+   assert.equal(result.selection.mudakkuHouseNo,house);
+   assert.equal(result.selection.mudakkuHouseSource,'lagna_rasi');
+   assert.ok(result.mudakkuHouseTemple?.temple);
+   assert.deepEqual(result.mudakkuHouseTemple, result.mudakkuHouseOptions[house-1].temple);
+   assert.equal(JSON.stringify(details),original);
+ }
+});
+test('Missing Lagna does not select a Mudakku house, and explicit legacy house still works',()=>{
+ const details={mudakku:{rasiNumber:5}};
+ const absent=resolveTempleReferences({horoscopeDetails:details});
+ assert.equal(absent.mudakkuHouseTemple,null);
+ assert.equal(absent.selection.mudakkuHouseNo,null);
+ const legacy=resolveTempleReferences({horoscopeDetails:details,mudakkuHouseNumber:7});
+ assert.equal(legacy.selection.mudakkuHouseNo,7);
+});

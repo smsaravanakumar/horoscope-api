@@ -29,13 +29,22 @@ function validateReferenceCoverage() {
   const hasAllRasiHouses=mudakku.length===144 && new Set(mudakku.map(e=>`${e.rasiNumber}:${e.houseNumber}`)).size===144 && mudakku.every(e=>e.verified && e.temple.ta);
   return {nakshatras: pairs.length, yogiAndAvayogiPairsComplete:hasAllNakshatras, planetaryGroups:mudakkuData.planetaryGroups, mudakkuSignHouseRows:mudakku.length, mudakkuTwelveSignsCovered:hasAllRasiHouses, sourceProofreading:'manual_client_signoff_required'};
 }
-function resolveTempleReferences({horoscopeDetails, mudakkuHouseNumber=null, language='ta'}={}) {
+function mudakkuHouseFromLagna(lagnaRasiNumber, mudakkuRasiNumber) {
+  const lagna = normalizeRasiNumber(lagnaRasiNumber);
+  const mudakku = normalizeRasiNumber(mudakkuRasiNumber);
+  return lagna === null || mudakku === null ? null : ((mudakku - lagna + 12) % 12) + 1;
+}
+function resolveTempleReferences({horoscopeDetails, mudakkuHouseNumber=null, lagnaRasiNumber=null, language='ta'}={}) {
   const lang=language==='en'?'en':'ta';
   const details=horoscopeDetails||{};
   const yogiNakshatraNo=normalizeNakshatraNumber(details.yogiAvayogi?.yogi?.nakshatraNumber);
   const avayogiNakshatraNo=normalizeNakshatraNumber(details.yogiAvayogi?.avayogi?.nakshatraNumber);
   const mudakkuRasiNo=normalizeRasiNumber(details.mudakku?.rasiNumber);
-  const houseNo=normalizeHouseNumber(mudakkuHouseNumber);
+  // Explicit house remains supported for existing callers. Otherwise calculate
+  // inclusive house count only when *both* authoritative Rasi numbers exist.
+  const explicitHouse=normalizeHouseNumber(mudakkuHouseNumber);
+  const calculatedHouse=mudakkuHouseFromLagna(lagnaRasiNumber,mudakkuRasiNo);
+  const houseNo=explicitHouse ?? calculatedHouse;
   const yogiRecord=yogiData.entries.find(e=>e.nakshatraNumber===yogiNakshatraNo);
   const avayogiRecord=yogiData.entries.find(e=>e.nakshatraNumber===avayogiNakshatraNo);
   const houseRecords=mudakkuRasiNo===null?[]:mudakkuData.entries.filter(e=>e.rasiNumber===mudakkuRasiNo).sort((a,b)=>a.houseNumber-b.houseNumber);
@@ -49,12 +58,12 @@ function resolveTempleReferences({horoscopeDetails, mudakkuHouseNumber=null, lan
     avayogiTemple:localize(avayogiRecord?.verified ? avayogiRecord.avayogi : null,lang),
     mudakkuHouseTemple:selected?localize(selected.verified ? selected.temple : null,lang):null,
     mudakkuHouseOptions:houseOptions,
-    selection:{yogiNakshatraNo,avayogiNakshatraNo,mudakkuRasiNo,mudakkuHouseNo:houseNo},
+    selection:{yogiNakshatraNo,avayogiNakshatraNo,mudakkuRasiNo,mudakkuHouseNo:houseNo,mudakkuHouseSource:explicitHouse!==null?'explicit':calculatedHouse!==null?'lagna_rasi':'unavailable'},
     labels:{nakshatra:yogiNakshatraNo!==null?NAKSHATRAS_TA[yogiNakshatraNo-1]:null,mudakkuRasi:mudakkuRasiNo!==null?(lang==='en'?RASIS_EN:RASIS_TA)[mudakkuRasiNo-1]:null},
     coverage:validateReferenceCoverage(),
     notes:lang==='en'?
-      ['Proper temple and town names remain in source Tamil script until client-approved translations are supplied.', 'The 12 Mudakku houses are reference options, not an automatically selected personal remedy.', 'Transcribed values require proofreading against the source scans before production publication.']:
-      ['ஆலயம் மற்றும் ஊர் பெயர்கள் மூல ஆவணத்தின் தமிழிலேயே உள்ளன.', 'முடக்கு ராசியின் 12 பாவங்களும் தகவலுக்காக மட்டுமே; தனிநபர் பரிகார பாவம் தானாகத் தேர்வு செய்யப்படாது.', 'வெளியீட்டுக்கு முன்பு மூல PDF உடன் பெயர்கள் சரிபார்க்கப்பட வேண்டும்.']
+      ['Proper temple and town names remain in source Tamil script until client-approved translations are supplied.', 'The selected Mudakku house is counted inclusively from natal Lagna when both Rasi values are available; the 12-house table remains as reference.', 'Transcribed values require proofreading against the source scans before production publication.']:
+      ['ஆலயம் மற்றும் ஊர் பெயர்கள் மூல ஆவணத்தின் தமிழிலேயே உள்ளன.', 'லக்னத்திலிருந்து முடக்கு ராசி உள்ள பாவம் கணக்கிடப்பட்டு அந்தப் பாவக் கோவில் தேர்ந்தெடுக்கப்படுகிறது; 12 பாவப் பட்டியலும் குறிப்புக்காக உள்ளது.', 'வெளியீட்டுக்கு முன்பு மூல PDF உடன் பெயர்கள் சரிபார்க்கப்பட வேண்டும்.']
   };
 }
-module.exports={resolveTempleReferences,normalizeNakshatraNumber,normalizeHouseNumber,normalizeRasiNumber,validateReferenceCoverage};
+module.exports={mudakkuHouseFromLagna,resolveTempleReferences,normalizeNakshatraNumber,normalizeHouseNumber,normalizeRasiNumber,validateReferenceCoverage};
