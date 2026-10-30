@@ -10,6 +10,7 @@
  */
 
 const EXEMPT_HOUSES = [3, 6, 11];
+const { selectMandiTempleByHouse } = require("./clientMandiTempleReferenceService");
 
 const HOUSE_EFFECTS = {
   1: {
@@ -112,6 +113,7 @@ function buildMandiDosha({ lagna, planets, language = "ta" } = {}) {
       mandiRasiNo,
       problem: null,
       remedyTemples: [],
+      templeReference: null,
       remedy: null,
       exemptHouses: [...EXEMPT_HOUSES],
       reason:
@@ -132,6 +134,7 @@ function buildMandiDosha({ lagna, planets, language = "ta" } = {}) {
     mandiRasiNo,
     problem: result ? localize(effect, language) : null,
     remedyTemples: result ? [...(REMEDY_TEMPLES[language] || REMEDY_TEMPLES.ta)] : [],
+    templeReference: selectMandiTempleByHouse(house, language),
     remedy: result ? localize(REMEDY, language) : null,
     exemptHouses: [...EXEMPT_HOUSES],
     reason: result

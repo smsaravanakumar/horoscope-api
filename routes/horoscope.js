@@ -431,6 +431,10 @@ router.post("/generate", async (req, res) => {
       language,
     });
 
+    // Additive house-specific Maandhi reference, independent of Dosha exemption.
+    clientTempleReferences.mandiHouseTemple = mandiDosha.templeReference;
+    clientTempleReferences.selection.mandiHouseNo = mandiDosha.house;
+
     const clientChartCalculations = buildClientChartCalculations({
       lagna, planets, horoscopeDetails, language,
     });
