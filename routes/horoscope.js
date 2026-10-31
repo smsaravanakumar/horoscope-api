@@ -34,6 +34,9 @@ const { buildMoleScarAnalysis } = require("../services/moleScarAnalysisService")
 const { buildAshtakavarga } = require("../services/ashtakavargaService");
 const { buildBirthCalculationDetails } = require("../services/birthCalculationDetailsService");
 
+const { buildClientNavanayaka } = require('../services/clientNavanayakaService');
+const { buildClientAmirthuBhaga } = require('../services/clientAmirthuBhagaService');
+
 const router = express.Router();
 
 const IST_OFFSET = "+05:30";
@@ -270,6 +273,9 @@ router.post("/generate", async (req, res) => {
     });
 
     // Existing chart and astrology calculations.
+    const clientNavanayaka = buildClientNavanayaka({ birthDate: birthDateTime.jsDate, latitude: coords.latitude, longitude: coords.longitude, language });
+    const clientAmirthuBhaga = buildClientAmirthuBhaga({ lagna, planets, language });
+
     const chart = buildSouthIndianChart({ lagna, planets });
     const houseChart = buildHouseChart({ lagna, planets });
     const navamsaChart = buildNavamsaChart({ lagna, planets });
@@ -443,6 +449,8 @@ router.post("/generate", async (req, res) => {
       success: true,
       clientChartCalculations,
       clientTempleReferences,
+      clientNavanayaka,
+      clientAmirthuBhaga,
       input: {
         name: name || "",
         gender: gender || "",

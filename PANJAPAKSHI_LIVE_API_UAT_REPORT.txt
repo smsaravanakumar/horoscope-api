@@ -1,0 +1,36 @@
+﻿[PASS] Production root health
+[PASS] HTTP horoscope generation (ta)
+[PASS] Reference object (ta)
+[PASS] Yogi temple (ta)
+[PASS] Avayogi temple (ta)
+[PASS] 27 Nakshatra coverage (ta)
+[PASS] 144 Mudakku house mappings (ta)
+[PASS] Mudakku choices (ta)
+[PASS] No invented Mudakku remedy selection (ta)
+[PASS] Natal horoscope blocks (ta)
+[PASS] Dasha and horoscope details (ta)
+[PASS] D60 and client calculations (ta)
+[PASS] Gocharam (ta)
+[PASS] Yoga Nadi Mandi and Panchapakshi (ta)
+[PASS] Ashtakavarga baseline (ta)
+[PASS] HTTP horoscope generation (en)
+[PASS] Reference object (en)
+[PASS] Yogi temple (en)
+[PASS] Avayogi temple (en)
+[PASS] 27 Nakshatra coverage (en)
+[PASS] 144 Mudakku house mappings (en)
+[PASS] Mudakku choices (en)
+[PASS] No invented Mudakku remedy selection (en)
+[PASS] Natal horoscope blocks (en)
+[PASS] Dasha and horoscope details (en)
+[PASS] D60 and client calculations (en)
+[PASS] Gocharam (en)
+[PASS] Yoga Nadi Mandi and Panchapakshi (en)
+[PASS] Ashtakavarga baseline (en)
+[PASS] Tamil/English core numeric consistency
+[PASS] Tamil/English temple selection consistency
+---- SUMMARY ----
+Base URL: https://horoscope-api-346p.onrender.com
+PASS=31 FAIL=0
+Note: endpoint reports coverage counts; independent 27/144 reference row correctness needs source-data review.
+Note: production results can include current-time Gocharam; do not compare transit values across times.

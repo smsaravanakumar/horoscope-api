@@ -1,0 +1,24 @@
+PANJAPAKSHI API BHAVAM SELECTION REVIEW
+
+CONFIRMED FROM THIS ZIP:
+- clientTempleReferenceService previously returned all 12 Mudakku house options, with no selected temple.
+- horoscope route did not send natal Lagna Rasi to the temple service.
+- mandiDoshaService already calculates Maandhi house from Lagna and has 3/6/11 exemptions.
+- Its two Maandhi temples are a GENERIC shared list, not individual house mappings. The ZIP does NOT contain evidence assigning either temple to a specific house.
+
+CHANGED:
+- API route passes already computed lagna.rasiNo to the reference service.
+- Service chooses Mudakku reference by inclusive sign counting from natal Lagna when both positions exist.
+- All 12 options are retained for backward compatibility, but Flutter should display only mudakkuHouseTemple for personalized Result Page.
+- Existing six reference tests remain compatible; added 144-combination test and missing-Lagna fallback.
+
+NOT CHANGED:
+- Astrology calculations, Maandhi Dosha thresholds, PDF, Yogi/Avayogi mapping.
+- Do NOT claim Maandhi temples are house-mapped; obtain explicit client mapping first or show generic temples only as generic references, not 'Bhavam-selected'.
+
+TEST:
+node --test tests\clientTempleReferenceService.test.js
+node --test tests\*.test.js  (with local server running for integration suite)
+npm audit
+
+NOTE: After API validation, deploy existing Render service, then update Flutter Result Page to display only selected Mudakku temple, not 12 options.
