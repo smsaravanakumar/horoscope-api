@@ -31,6 +31,7 @@ const { buildMandiDosha } = require("../services/mandiDoshaService");
 const { buildPanchaPakshiAnalysis } = require("../services/panchaPakshiService");
 const { buildD1D60Analysis } = require("../services/d1D60AnalysisService");
 const { buildCurrentGocharam } = require("../services/gocharamService");
+const { buildClientGocharamDasha } = require("../services/clientGocharamDashaService");
 const { buildMoleScarAnalysis } = require("../services/moleScarAnalysisService");
 const { buildAshtakavarga } = require("../services/ashtakavargaService");
 const { buildBirthCalculationDetails } = require("../services/birthCalculationDetailsService");
@@ -454,7 +455,7 @@ router.post("/generate", async (req, res) => {
       },
       clientDashaPeriods: {
         natal: birthCalculationDetails.dashaTimeline,
-        gocharam: {evaluated:false,reason:'client_gocharam_dasha_convention_unconfirmed'},
+        gocharam: buildClientGocharamDasha({birthDate:birthDateTime.jsDate,currentGocharam,language}),
       },
       clientChartCalculations,
       clientTempleReferences,
