@@ -18,7 +18,7 @@ test('house 11 temple remains present while Mandi Dosha remains absent', () => {
   const result=buildMandiDosha({lagna:{rasiNo:1}, planets:[{key:'mandi',rasiNo:11}],language:'ta'});
   assert.equal(result.house,11);
   assert.equal(result.result,false);
-  assert.equal(result.templeReference.temple,'மடப்புரம் பத்ரகாளியம்மன்');
+  assert.equal(result.templeReference.temple,'திருப்புவனம் காளி');
   assert.deepEqual(result.remedyTemples, []); // frozen legacy Dosha behaviour
 });
 test('all twelve lagna-relative positions select matching reference without changing Dosha rules', () => {
@@ -35,6 +35,6 @@ test('missing or invalid houses do not invent temple details; English preserves 
   assert.equal(selectMandiTempleByHouse('5'),null);
   const english=selectMandiTempleByHouse(11,'en');
   assert.equal(english.originalLanguage,'ta');
-  assert.equal(english.temple,'மடப்புரம் பத்ரகாளியம்மன்');
+  assert.equal(english.temple,'திருப்புவனம் காளி');
   assert.equal(buildMandiDosha({lagna:null,planets:[]}).templeReference,null);
 });

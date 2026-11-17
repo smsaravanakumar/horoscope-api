@@ -303,6 +303,11 @@ function getPlanetPositions(date, latitude = 0, longitude = 0) {
 }
 
 module.exports = {
+  getPlanetSpeedByKey: (key,date) => {
+    const planet=PLANETS.find(p=>p.key===key);
+    if (!planet) throw new Error('Unsupported planetary speed key');
+    return getPlanetSpeed(planet.body,date);
+  },
   getPlanetPositions,
   getLagna,
   getMandiPosition,

@@ -521,6 +521,10 @@ function detectClientKalaSarpa({ planets, language }) {
           ],
         }
       : null,
+    remedyByPlanet: result ? [
+      {planetKey:'ketu',planetName:language==='en'?'Ketu':'கேது',temple:language==='en'?'Mutharamman Temple':'முத்தாரம்மன் கோயில்',location:language==='en'?'Kulasekarapattinam, near Tiruchendur':'குலசேகரப்பட்டினம், திருச்செந்தூர் அருகில்'},
+      {planetKey:'rahu',planetName:language==='en'?'Rahu':'ராகு',temple:language==='en'?'Kala Bhairavar Temple':'காலபைரவர் கோயில்',location:language==='en'?'Vairavanpatti, near Pillayarpatti':'வைரவன்பட்டி, பிள்ளையார்பட்டி அருகில்'},
+    ] : [],
   };
 }
 

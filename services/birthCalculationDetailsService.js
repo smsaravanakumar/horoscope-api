@@ -502,7 +502,22 @@ function buildDashaTimeline({ birthDate, moon, dasha, language, currentDate = ne
     };
   }
 
+  const bhuktiDurationMs=currentBhukti.end.getTime()-currentBhukti.start.getTime();
+  const bhuktiIndex=DASHA_KEYS.indexOf(currentBhukti.key);
+  let antaramStart=currentBhukti.start.getTime();
+  let currentAntaram=null;
+  for(let i=0;i<9;i++) {
+    const key=DASHA_KEYS[(bhuktiIndex+i)%9];
+    const end=i===8?currentBhukti.end.getTime():antaramStart+bhuktiDurationMs*DASHA_YEARS[key]/120;
+    if(currentDate.getTime()>=antaramStart&&currentDate.getTime()<end) {
+      const startDate=new Date(antaramStart),endDate=new Date(end);
+      currentAntaram={key,name:PLANET_NAMES[language][key],startDate:formatLocalDate(startDate),endDate:formatLocalDate(endDate),startIsoUtc:startDate.toISOString(),endIsoUtc:endDate.toISOString()};
+      break;
+    }
+    antaramStart=end;
+  }
   return {
+    currentAntaram,
     birthDasha: {
       key: birthState.lordKey,
       name: PLANET_NAMES[language][birthState.lordKey],
@@ -614,6 +629,7 @@ function buildBirthCalculationDetails({
 }
 
 module.exports = {
+  buildDashaTimeline,
   buildBirthCalculationDetails,
   formatDms,
   formatNazhigaiFromSeconds,

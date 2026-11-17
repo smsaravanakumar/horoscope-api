@@ -1,6 +1,6 @@
 {
-  "source": "DOC-20261024-WA0008(2).pdf",
-  "status": "transcribed_from_client_pdf_tamil_original",
+  "source": "Client matrix dated 2026-11-17; prior PDF transcription reused for matching temple identities",
+  "status": "2026-11-17_client_matrix_order_corrected_existing_sign_groups_pending_name_proofreading",
   "expectedHousesPerRasi": 12,
   "planetaryGroups": 7,
   "signCoverage": 12,
@@ -1020,6 +1020,20 @@
       "verified": true,
       "temple": {
         "ta": {
+          "temple": "அருள்மிகு இம்மையிலும் நன்மை தருவார் திருக்கோவில்",
+          "town": "மதுரை (மேற்கு கோபுர வாசல்)",
+          "district": "மதுரை"
+        }
+      },
+      "sourcePage": 2
+    },
+    {
+      "rasiNumber": 4,
+      "planetaryGroup": "moon",
+      "houseNumber": 2,
+      "verified": true,
+      "temple": {
+        "ta": {
           "temple": "அருள்மிகு சந்திரசேகரர் (சூரிய சந்திரேஸ்வரர்) கோவில்",
           "town": "ஒரத்தூர் (மல்லிக்கோவில்)",
           "district": "திருச்சிராப்பள்ளி"
@@ -1030,7 +1044,7 @@
     {
       "rasiNumber": 4,
       "planetaryGroup": "moon",
-      "houseNumber": 2,
+      "houseNumber": 3,
       "verified": true,
       "temple": {
         "ta": {
@@ -1044,7 +1058,7 @@
     {
       "rasiNumber": 4,
       "planetaryGroup": "moon",
-      "houseNumber": 3,
+      "houseNumber": 4,
       "verified": true,
       "temple": {
         "ta": {
@@ -1058,7 +1072,7 @@
     {
       "rasiNumber": 4,
       "planetaryGroup": "moon",
-      "houseNumber": 4,
+      "houseNumber": 5,
       "verified": true,
       "temple": {
         "ta": {
@@ -1072,7 +1086,7 @@
     {
       "rasiNumber": 4,
       "planetaryGroup": "moon",
-      "houseNumber": 5,
+      "houseNumber": 6,
       "verified": true,
       "temple": {
         "ta": {
@@ -1086,7 +1100,7 @@
     {
       "rasiNumber": 4,
       "planetaryGroup": "moon",
-      "houseNumber": 6,
+      "houseNumber": 7,
       "verified": true,
       "temple": {
         "ta": {
@@ -1100,7 +1114,7 @@
     {
       "rasiNumber": 4,
       "planetaryGroup": "moon",
-      "houseNumber": 7,
+      "houseNumber": 8,
       "verified": true,
       "temple": {
         "ta": {
@@ -1114,7 +1128,7 @@
     {
       "rasiNumber": 4,
       "planetaryGroup": "moon",
-      "houseNumber": 8,
+      "houseNumber": 9,
       "verified": true,
       "temple": {
         "ta": {
@@ -1128,7 +1142,7 @@
     {
       "rasiNumber": 4,
       "planetaryGroup": "moon",
-      "houseNumber": 9,
+      "houseNumber": 10,
       "verified": true,
       "temple": {
         "ta": {
@@ -1142,7 +1156,7 @@
     {
       "rasiNumber": 4,
       "planetaryGroup": "moon",
-      "houseNumber": 10,
+      "houseNumber": 11,
       "verified": true,
       "temple": {
         "ta": {
@@ -1156,20 +1170,6 @@
     {
       "rasiNumber": 4,
       "planetaryGroup": "moon",
-      "houseNumber": 11,
-      "verified": true,
-      "temple": {
-        "ta": {
-          "temple": "அருள்மிகு பிரம்மபுரீஸ்வரர் திருக்கோவில் (விதி மாற்றும் தலம்)",
-          "town": "திருப்பட்டூர் (சிறுகனூர் வழி)",
-          "district": "திருச்சிராப்பள்ளி"
-        }
-      },
-      "sourcePage": 2
-    },
-    {
-      "rasiNumber": 4,
-      "planetaryGroup": "moon",
       "houseNumber": 12,
       "verified": true,
       "temple": {
@@ -1185,6 +1185,20 @@
       "rasiNumber": 5,
       "planetaryGroup": "sun",
       "houseNumber": 1,
+      "verified": true,
+      "temple": {
+        "ta": {
+          "temple": "அருள்மிகு இம்மையிலும் நன்மை தருவார் திருக்கோவில்",
+          "town": "மதுரை (மேற்கு கோபுர வாசல்)",
+          "district": "மதுரை"
+        }
+      },
+      "sourcePage": 3
+    },
+    {
+      "rasiNumber": 5,
+      "planetaryGroup": "sun",
+      "houseNumber": 2,
       "verified": true,
       "temple": {
         "ta": {
@@ -1198,7 +1212,7 @@
     {
       "rasiNumber": 5,
       "planetaryGroup": "sun",
-      "houseNumber": 2,
+      "houseNumber": 3,
       "verified": true,
       "temple": {
         "ta": {
@@ -1212,7 +1226,7 @@
     {
       "rasiNumber": 5,
       "planetaryGroup": "sun",
-      "houseNumber": 3,
+      "houseNumber": 4,
       "verified": true,
       "temple": {
         "ta": {
@@ -1226,7 +1240,7 @@
     {
       "rasiNumber": 5,
       "planetaryGroup": "sun",
-      "houseNumber": 4,
+      "houseNumber": 5,
       "verified": true,
       "temple": {
         "ta": {
@@ -1240,7 +1254,7 @@
     {
       "rasiNumber": 5,
       "planetaryGroup": "sun",
-      "houseNumber": 5,
+      "houseNumber": 6,
       "verified": true,
       "temple": {
         "ta": {
@@ -1254,7 +1268,7 @@
     {
       "rasiNumber": 5,
       "planetaryGroup": "sun",
-      "houseNumber": 6,
+      "houseNumber": 7,
       "verified": true,
       "temple": {
         "ta": {
@@ -1268,7 +1282,7 @@
     {
       "rasiNumber": 5,
       "planetaryGroup": "sun",
-      "houseNumber": 7,
+      "houseNumber": 8,
       "verified": true,
       "temple": {
         "ta": {
@@ -1282,7 +1296,7 @@
     {
       "rasiNumber": 5,
       "planetaryGroup": "sun",
-      "houseNumber": 8,
+      "houseNumber": 9,
       "verified": true,
       "temple": {
         "ta": {
@@ -1296,7 +1310,7 @@
     {
       "rasiNumber": 5,
       "planetaryGroup": "sun",
-      "houseNumber": 9,
+      "houseNumber": 10,
       "verified": true,
       "temple": {
         "ta": {
@@ -1310,7 +1324,7 @@
     {
       "rasiNumber": 5,
       "planetaryGroup": "sun",
-      "houseNumber": 10,
+      "houseNumber": 11,
       "verified": true,
       "temple": {
         "ta": {
@@ -1324,20 +1338,6 @@
     {
       "rasiNumber": 5,
       "planetaryGroup": "sun",
-      "houseNumber": 11,
-      "verified": true,
-      "temple": {
-        "ta": {
-          "temple": "அருள்மிகு யோக லட்சுமி நரசிம்மர் குடவரை திருக்கோவில்",
-          "town": "ஒத்தக்கடை, யானைமலை (மதுரை)",
-          "district": "மதுரை"
-        }
-      },
-      "sourcePage": 3
-    },
-    {
-      "rasiNumber": 5,
-      "planetaryGroup": "sun",
       "houseNumber": 12,
       "verified": true,
       "temple": {
@@ -1356,6 +1356,20 @@
       "verified": true,
       "temple": {
         "ta": {
+          "temple": "அருள்மிகு இம்மையிலும் நன்மை தருவார் திருக்கோவில்",
+          "town": "மதுரை (மேற்கு கோபுர வாசல்)",
+          "district": "மதுரை"
+        }
+      },
+      "sourcePage": 3
+    },
+    {
+      "rasiNumber": 9,
+      "planetaryGroup": "jupiter",
+      "houseNumber": 2,
+      "verified": true,
+      "temple": {
+        "ta": {
           "temple": "அருள்மிகு சிஷ்டகுருநாதேஸ்வரர் திருக்கோவில்",
           "town": "திருத்துறையூர், பண்ருட்டி",
           "district": "கடலூர்"
@@ -1366,7 +1380,7 @@
     {
       "rasiNumber": 9,
       "planetaryGroup": "jupiter",
-      "houseNumber": 2,
+      "houseNumber": 3,
       "verified": true,
       "temple": {
         "ta": {
@@ -1380,7 +1394,7 @@
     {
       "rasiNumber": 9,
       "planetaryGroup": "jupiter",
-      "houseNumber": 3,
+      "houseNumber": 4,
       "verified": true,
       "temple": {
         "ta": {
@@ -1394,7 +1408,7 @@
     {
       "rasiNumber": 9,
       "planetaryGroup": "jupiter",
-      "houseNumber": 4,
+      "houseNumber": 5,
       "verified": true,
       "temple": {
         "ta": {
@@ -1408,7 +1422,7 @@
     {
       "rasiNumber": 9,
       "planetaryGroup": "jupiter",
-      "houseNumber": 5,
+      "houseNumber": 6,
       "verified": true,
       "temple": {
         "ta": {
@@ -1422,7 +1436,7 @@
     {
       "rasiNumber": 9,
       "planetaryGroup": "jupiter",
-      "houseNumber": 6,
+      "houseNumber": 7,
       "verified": true,
       "temple": {
         "ta": {
@@ -1436,7 +1450,7 @@
     {
       "rasiNumber": 9,
       "planetaryGroup": "jupiter",
-      "houseNumber": 7,
+      "houseNumber": 8,
       "verified": true,
       "temple": {
         "ta": {
@@ -1450,7 +1464,7 @@
     {
       "rasiNumber": 9,
       "planetaryGroup": "jupiter",
-      "houseNumber": 8,
+      "houseNumber": 9,
       "verified": true,
       "temple": {
         "ta": {
@@ -1464,7 +1478,7 @@
     {
       "rasiNumber": 9,
       "planetaryGroup": "jupiter",
-      "houseNumber": 9,
+      "houseNumber": 10,
       "verified": true,
       "temple": {
         "ta": {
@@ -1478,27 +1492,13 @@
     {
       "rasiNumber": 9,
       "planetaryGroup": "jupiter",
-      "houseNumber": 10,
+      "houseNumber": 11,
       "verified": true,
       "temple": {
         "ta": {
           "temple": "அருள்மிகு பட்டீஸ்வரர் திருக்கோவில்",
           "town": "பேரூர், கோயமுத்தூர்",
           "district": "கோயமுத்தூர்"
-        }
-      },
-      "sourcePage": 3
-    },
-    {
-      "rasiNumber": 9,
-      "planetaryGroup": "jupiter",
-      "houseNumber": 11,
-      "verified": true,
-      "temple": {
-        "ta": {
-          "temple": "அருள்மிகு கோடிக்குழகர் (குழகர்நாதர்) திருக்கோவில்",
-          "town": "கோடியக்கரை (வேதாரண்யம் அருகில்)",
-          "district": "நாகப்பட்டினம்"
         }
       },
       "sourcePage": 3
@@ -1521,6 +1521,20 @@
       "rasiNumber": 12,
       "planetaryGroup": "jupiter",
       "houseNumber": 1,
+      "verified": true,
+      "temple": {
+        "ta": {
+          "temple": "அருள்மிகு இம்மையிலும் நன்மை தருவார் திருக்கோவில்",
+          "town": "மதுரை (மேற்கு கோபுர வாசல்)",
+          "district": "மதுரை"
+        }
+      },
+      "sourcePage": 3
+    },
+    {
+      "rasiNumber": 12,
+      "planetaryGroup": "jupiter",
+      "houseNumber": 2,
       "verified": true,
       "temple": {
         "ta": {
@@ -1534,7 +1548,7 @@
     {
       "rasiNumber": 12,
       "planetaryGroup": "jupiter",
-      "houseNumber": 2,
+      "houseNumber": 3,
       "verified": true,
       "temple": {
         "ta": {
@@ -1548,7 +1562,7 @@
     {
       "rasiNumber": 12,
       "planetaryGroup": "jupiter",
-      "houseNumber": 3,
+      "houseNumber": 4,
       "verified": true,
       "temple": {
         "ta": {
@@ -1562,7 +1576,7 @@
     {
       "rasiNumber": 12,
       "planetaryGroup": "jupiter",
-      "houseNumber": 4,
+      "houseNumber": 5,
       "verified": true,
       "temple": {
         "ta": {
@@ -1576,7 +1590,7 @@
     {
       "rasiNumber": 12,
       "planetaryGroup": "jupiter",
-      "houseNumber": 5,
+      "houseNumber": 6,
       "verified": true,
       "temple": {
         "ta": {
@@ -1590,7 +1604,7 @@
     {
       "rasiNumber": 12,
       "planetaryGroup": "jupiter",
-      "houseNumber": 6,
+      "houseNumber": 7,
       "verified": true,
       "temple": {
         "ta": {
@@ -1604,7 +1618,7 @@
     {
       "rasiNumber": 12,
       "planetaryGroup": "jupiter",
-      "houseNumber": 7,
+      "houseNumber": 8,
       "verified": true,
       "temple": {
         "ta": {
@@ -1618,7 +1632,7 @@
     {
       "rasiNumber": 12,
       "planetaryGroup": "jupiter",
-      "houseNumber": 8,
+      "houseNumber": 9,
       "verified": true,
       "temple": {
         "ta": {
@@ -1632,7 +1646,7 @@
     {
       "rasiNumber": 12,
       "planetaryGroup": "jupiter",
-      "houseNumber": 9,
+      "houseNumber": 10,
       "verified": true,
       "temple": {
         "ta": {
@@ -1646,7 +1660,7 @@
     {
       "rasiNumber": 12,
       "planetaryGroup": "jupiter",
-      "houseNumber": 10,
+      "houseNumber": 11,
       "verified": true,
       "temple": {
         "ta": {
@@ -1660,20 +1674,6 @@
     {
       "rasiNumber": 12,
       "planetaryGroup": "jupiter",
-      "houseNumber": 11,
-      "verified": true,
-      "temple": {
-        "ta": {
-          "temple": "அருள்மிகு கோடிக்குழகர் (குழகர்நாதர்) திருக்கோவில்",
-          "town": "கோடியக்கரை (வேதாரண்யம் அருகில்)",
-          "district": "நாகப்பட்டினம்"
-        }
-      },
-      "sourcePage": 3
-    },
-    {
-      "rasiNumber": 12,
-      "planetaryGroup": "jupiter",
       "houseNumber": 12,
       "verified": true,
       "temple": {
@@ -1692,6 +1692,20 @@
       "verified": true,
       "temple": {
         "ta": {
+          "temple": "அருள்மிகு இம்மையிலும் நன்மை தருவார் திருக்கோவில்",
+          "town": "மதுரை (மேற்கு கோபுர வாசல்)",
+          "district": "மதுரை"
+        }
+      },
+      "sourcePage": 4
+    },
+    {
+      "rasiNumber": 10,
+      "planetaryGroup": "saturn",
+      "houseNumber": 2,
+      "verified": true,
+      "temple": {
+        "ta": {
           "temple": "அருள்மிகு திருமறைநாதர் / சோமேஸ்வரர் கோவில் (108 சனி தீபம், சூரிய தீர்த்தம்)",
           "town": "திருவாதவூர் (மதுரை மேலூர் வழி)",
           "district": "மதுரை"
@@ -1702,7 +1716,7 @@
     {
       "rasiNumber": 10,
       "planetaryGroup": "saturn",
-      "houseNumber": 2,
+      "houseNumber": 3,
       "verified": true,
       "temple": {
         "ta": {
@@ -1716,7 +1730,7 @@
     {
       "rasiNumber": 10,
       "planetaryGroup": "saturn",
-      "houseNumber": 3,
+      "houseNumber": 4,
       "verified": true,
       "temple": {
         "ta": {
@@ -1730,7 +1744,7 @@
     {
       "rasiNumber": 10,
       "planetaryGroup": "saturn",
-      "houseNumber": 4,
+      "houseNumber": 5,
       "verified": true,
       "temple": {
         "ta": {
@@ -1744,7 +1758,7 @@
     {
       "rasiNumber": 10,
       "planetaryGroup": "saturn",
-      "houseNumber": 5,
+      "houseNumber": 6,
       "verified": true,
       "temple": {
         "ta": {
@@ -1758,7 +1772,7 @@
     {
       "rasiNumber": 10,
       "planetaryGroup": "saturn",
-      "houseNumber": 6,
+      "houseNumber": 7,
       "verified": true,
       "temple": {
         "ta": {
@@ -1772,7 +1786,7 @@
     {
       "rasiNumber": 10,
       "planetaryGroup": "saturn",
-      "houseNumber": 7,
+      "houseNumber": 8,
       "verified": true,
       "temple": {
         "ta": {
@@ -1786,7 +1800,7 @@
     {
       "rasiNumber": 10,
       "planetaryGroup": "saturn",
-      "houseNumber": 8,
+      "houseNumber": 9,
       "verified": true,
       "temple": {
         "ta": {
@@ -1800,7 +1814,7 @@
     {
       "rasiNumber": 10,
       "planetaryGroup": "saturn",
-      "houseNumber": 9,
+      "houseNumber": 10,
       "verified": true,
       "temple": {
         "ta": {
@@ -1814,26 +1828,12 @@
     {
       "rasiNumber": 10,
       "planetaryGroup": "saturn",
-      "houseNumber": 10,
+      "houseNumber": 11,
       "verified": true,
       "temple": {
         "ta": {
           "temple": "அருள்மிகு ஆதிகார்த்தீஸ்வரர் திருக்கோவில்",
           "town": "திருவாடானை",
-          "district": "ராமநாதபுரம்"
-        }
-      },
-      "sourcePage": 4
-    },
-    {
-      "rasiNumber": 10,
-      "planetaryGroup": "saturn",
-      "houseNumber": 11,
-      "verified": true,
-      "temple": {
-        "ta": {
-          "temple": "அருள்மிகு ஆதிஜெகந்நாதப் பெருமாள் / உத்திரகோசமங்கை (சேதுகரை)",
-          "town": "திருப்புல்லாணி, ராமநாதபுரம்",
           "district": "ராமநாதபுரம்"
         }
       },
@@ -1860,6 +1860,20 @@
       "verified": true,
       "temple": {
         "ta": {
+          "temple": "அருள்மிகு இம்மையிலும் நன்மை தருவார் திருக்கோவில்",
+          "town": "மதுரை (மேற்கு கோபுர வாசல்)",
+          "district": "மதுரை"
+        }
+      },
+      "sourcePage": 4
+    },
+    {
+      "rasiNumber": 11,
+      "planetaryGroup": "saturn",
+      "houseNumber": 2,
+      "verified": true,
+      "temple": {
+        "ta": {
           "temple": "அருள்மிகு திருமறைநாதர் / சோமேஸ்வரர் கோவில் (108 சனி தீபம், சூரிய தீர்த்தம்)",
           "town": "திருவாதவூர் (மதுரை மேலூர் வழி)",
           "district": "மதுரை"
@@ -1870,7 +1884,7 @@
     {
       "rasiNumber": 11,
       "planetaryGroup": "saturn",
-      "houseNumber": 2,
+      "houseNumber": 3,
       "verified": true,
       "temple": {
         "ta": {
@@ -1884,7 +1898,7 @@
     {
       "rasiNumber": 11,
       "planetaryGroup": "saturn",
-      "houseNumber": 3,
+      "houseNumber": 4,
       "verified": true,
       "temple": {
         "ta": {
@@ -1898,7 +1912,7 @@
     {
       "rasiNumber": 11,
       "planetaryGroup": "saturn",
-      "houseNumber": 4,
+      "houseNumber": 5,
       "verified": true,
       "temple": {
         "ta": {
@@ -1912,7 +1926,7 @@
     {
       "rasiNumber": 11,
       "planetaryGroup": "saturn",
-      "houseNumber": 5,
+      "houseNumber": 6,
       "verified": true,
       "temple": {
         "ta": {
@@ -1926,7 +1940,7 @@
     {
       "rasiNumber": 11,
       "planetaryGroup": "saturn",
-      "houseNumber": 6,
+      "houseNumber": 7,
       "verified": true,
       "temple": {
         "ta": {
@@ -1940,7 +1954,7 @@
     {
       "rasiNumber": 11,
       "planetaryGroup": "saturn",
-      "houseNumber": 7,
+      "houseNumber": 8,
       "verified": true,
       "temple": {
         "ta": {
@@ -1954,7 +1968,7 @@
     {
       "rasiNumber": 11,
       "planetaryGroup": "saturn",
-      "houseNumber": 8,
+      "houseNumber": 9,
       "verified": true,
       "temple": {
         "ta": {
@@ -1968,7 +1982,7 @@
     {
       "rasiNumber": 11,
       "planetaryGroup": "saturn",
-      "houseNumber": 9,
+      "houseNumber": 10,
       "verified": true,
       "temple": {
         "ta": {
@@ -1982,26 +1996,12 @@
     {
       "rasiNumber": 11,
       "planetaryGroup": "saturn",
-      "houseNumber": 10,
+      "houseNumber": 11,
       "verified": true,
       "temple": {
         "ta": {
           "temple": "அருள்மிகு ஆதிகார்த்தீஸ்வரர் திருக்கோவில்",
           "town": "திருவாடானை",
-          "district": "ராமநாதபுரம்"
-        }
-      },
-      "sourcePage": 4
-    },
-    {
-      "rasiNumber": 11,
-      "planetaryGroup": "saturn",
-      "houseNumber": 11,
-      "verified": true,
-      "temple": {
-        "ta": {
-          "temple": "அருள்மிகு ஆதிஜெகந்நாதப் பெருமாள் / உத்திரகோசமங்கை (சேதுகரை)",
-          "town": "திருப்புல்லாணி, ராமநாதபுரம்",
           "district": "ராமநாதபுரம்"
         }
       },

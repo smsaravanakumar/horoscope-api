@@ -1,4 +1,5 @@
 const { buildClientChartCalculations } = require('../services/clientChartCalculationsService');
+const { buildPlanetaryStates } = require('../services/clientPlanetaryStatesService');
 const express = require("express");
 
 const { getCoordinates } = require("../services/geocodeService");
@@ -447,6 +448,14 @@ router.post("/generate", async (req, res) => {
 
     return res.json({
       success: true,
+      planetaryStates: {
+        natal: buildPlanetaryStates({planets,date:birthDateTime.jsDate}),
+        gocharam: buildPlanetaryStates({planets:currentGocharam.planets,date:new Date(currentGocharam.dateTimeUtc)}),
+      },
+      clientDashaPeriods: {
+        natal: birthCalculationDetails.dashaTimeline,
+        gocharam: {evaluated:false,reason:'client_gocharam_dasha_convention_unconfirmed'},
+      },
       clientChartCalculations,
       clientTempleReferences,
       clientNavanayaka,

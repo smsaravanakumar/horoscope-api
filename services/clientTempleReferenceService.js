@@ -2,6 +2,7 @@
 // Client temple guide data only; this module does not alter the frozen astrology engine.
 const yogiData = require('../data/clientYogiAvayogiTemples.json');
 const mudakkuData = require('../data/clientMudakkuHouseTemples.json');
+const nodeReference = require('../data/clientMudakkuNodeReference.json');
 const NAKSHATRAS_TA = ['அஸ்வினி','பரணி','கார்த்திகை','ரோகிணி','மிருகசீரிடம்','திருவாதிரை','புனர்பூசம்','பூசம்','ஆயில்யம்','மகம்','பூரம்','உத்திரம்','அஸ்தம்','சித்திரை','சுவாதி','விசாகம்','அனுஷம்','கேட்டை','மூலம்','பூராடம்','உத்திராடம்','திருவோணம்','அவிட்டம்','சதயம்','பூரட்டாதி','உத்திரட்டாதி','ரேவதி'];
 const RASIS_TA = ['மேஷம்','ரிஷபம்','மிதுனம்','கடகம்','சிம்மம்','கன்னி','துலாம்','விருச்சிகம்','தனுசு','மகரம்','கும்பம்','மீனம்'];
 const RASIS_EN = ['Aries','Taurus','Gemini','Cancer','Leo','Virgo','Libra','Scorpio','Sagittarius','Capricorn','Aquarius','Pisces'];
@@ -58,6 +59,7 @@ function resolveTempleReferences({horoscopeDetails, mudakkuHouseNumber=null, lag
     avayogiTemple:localize(avayogiRecord?.verified ? avayogiRecord.avayogi : null,lang),
     mudakkuHouseTemple:selected?localize(selected.verified ? selected.temple : null,lang):null,
     mudakkuHouseOptions:houseOptions,
+    mudakkuNodeReference: {status:nodeReference.status,groups:Object.fromEntries(Object.entries(nodeReference.groups).map(([key,rows])=>[key,rows.map((text,i)=>({houseNumber:i+1,sourceTextTa:text}))]))},
     selection:{yogiNakshatraNo,avayogiNakshatraNo,mudakkuRasiNo,mudakkuHouseNo:houseNo,mudakkuHouseSource:explicitHouse!==null?'explicit':calculatedHouse!==null?'lagna_rasi':'unavailable'},
     labels:{nakshatra:yogiNakshatraNo!==null?NAKSHATRAS_TA[yogiNakshatraNo-1]:null,mudakkuRasi:mudakkuRasiNo!==null?(lang==='en'?RASIS_EN:RASIS_TA)[mudakkuRasiNo-1]:null},
     coverage:validateReferenceCoverage(),
